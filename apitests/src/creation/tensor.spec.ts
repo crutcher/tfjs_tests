@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import * as tf from '@tensorflow/tfjs';
+import * as tf from "@tensorflow/tfjs";
 
 // See: https://js.tensorflow.org/api/latest/#tensor
 describe("tf.tensor(): ", () => {

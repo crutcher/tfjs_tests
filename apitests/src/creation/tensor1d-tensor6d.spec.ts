@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import * as tf from '@tensorflow/tfjs';
+import * as tf from "@tensorflow/tfjs";
 
 // See: https://js.tensorflow.org/api/latest/#tensor
 describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
@@ -20,7 +20,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
       [3, 4],
     ]);
     expect(t.dtype).to.equal("float32");
-    expect(t.shape).to.eql([2,2]);
+    expect(t.shape).to.eql([2, 2]);
     expect(t.arraySync()).to.eql([
       [1, 2],
       [3, 4],

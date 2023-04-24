@@ -4,9 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prettier": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "lint": "eslint . --ext .ts",
     "build": "npx tsc",
     "test": "ts-mocha src/**/*.spec.ts",
     "test watch": "ts-mocha --type-check -p src/ src/**/*.spec.ts"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run prettier && npm run lint"
+    }
   },
   "keywords": [],
   "author": "",
@@ -17,8 +24,15 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.16.0",
     "@types/sinon": "^10.0.14",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
     "chai": "^4.3.7",
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
     "mocha": "^10.2.0",
+    "prettier": "^2.8.8",
     "sinon": "^15.0.4",
     "ts-mocha": "^10.0.0",
     "typescript": "^5.0.4"

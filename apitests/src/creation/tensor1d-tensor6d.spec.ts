@@ -1,4 +1,7 @@
-import { expect } from "chai";
+import * as chai from "chai";
+const expect = chai.expect;
+import { tensorChaiPlugin } from "../plugins/tensor-chai";
+chai.use(tensorChaiPlugin);
 import * as tf from "@tensorflow/tfjs";
 
 // See: https://js.tensorflow.org/api/latest/#tensor
@@ -11,7 +14,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
   it("  -- tf.tensor1d()", () => {
     const t: tf.Tensor1D = tf.tensor1d([1, 2, 3, 4]);
     expect(t.dtype).to.equal("float32");
-    expect(t.shape).to.eql([4]);
+    expect(t).to.haveShape([4]);
     expect(t.arraySync()).to.eql([1, 2, 3, 4]);
   });
   it("  -- tf.tensor2d()", () => {
@@ -20,7 +23,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
       [3, 4],
     ]);
     expect(t.dtype).to.equal("float32");
-    expect(t.shape).to.eql([2, 2]);
+    expect(t).to.haveShape([2, 2]);
     expect(t.arraySync()).to.eql([
       [1, 2],
       [3, 4],
@@ -40,7 +43,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
 
     const t: tf.Tensor3D = tf.tensor3d(array, undefined, "int32");
     expect(t.dtype).to.equal("int32");
-    expect(t.shape).to.eql([2, 2, 2]);
+    expect(t).to.haveShape([2, 2, 2]);
     expect(t.arraySync()).to.eql(array);
   });
   it("  -- tf.tensor4d()", () => {
@@ -69,7 +72,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
 
     const t: tf.Tensor4D = tf.tensor4d(array, undefined, "int32");
     expect(t.dtype).to.equal("int32");
-    expect(t.shape).to.eql([2, 2, 2, 2]);
+    expect(t).to.haveShape([2, 2, 2, 2]);
     expect(t.arraySync()).to.eql(array);
   });
   it("  -- tf.tensor5d()", () => {
@@ -122,7 +125,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
 
     const t: tf.Tensor5D = tf.tensor5d(array);
     expect(t.dtype).to.equal("float32");
-    expect(t.shape).to.eql([2, 2, 2, 2, 3]);
+    expect(t).to.haveShape([2, 2, 2, 2, 3]);
     expect(t.arraySync()).to.eql(array);
   });
   it("  -- tf.tensor6d()", () => {
@@ -223,7 +226,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
 
     const t: tf.Tensor = tf.tensor6d(array);
     expect(t.dtype).to.equal("float32");
-    expect(t.shape).to.eql([2, 2, 2, 2, 2, 2]);
+    expect(t).to.haveShape([2, 2, 2, 2, 2, 2]);
     expect(t.arraySync()).to.eql(array);
   });
 });

@@ -1,4 +1,7 @@
-import { expect } from "chai";
+import * as chai from "chai";
+const expect = chai.expect;
+import { tensorChaiPlugin } from "../plugins/tensor-chai";
+chai.use(tensorChaiPlugin);
 import * as tf from "@tensorflow/tfjs";
 
 describe("tf.clone(): ", () => {
@@ -9,6 +12,6 @@ describe("tf.clone(): ", () => {
     ];
     const t: tf.Tensor = tf.tensor(arr);
     const clone: tf.Tensor = t.clone();
-    expect(clone.shape).to.eql([2, 3]);
+    expect(clone).to.haveShape([2, 3]);
   });
 });

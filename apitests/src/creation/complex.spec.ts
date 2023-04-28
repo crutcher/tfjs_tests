@@ -1,4 +1,7 @@
-import { expect } from "chai";
+import * as chai from "chai";
+const expect = chai.expect;
+import { tensorChaiPlugin } from "../plugins/tensor-chai";
+chai.use(tensorChaiPlugin);
 import * as tf from "@tensorflow/tfjs";
 
 describe("tf.complex(): ", () => {
@@ -12,7 +15,7 @@ describe("tf.complex(): ", () => {
       [20, 30],
     ]);
     const complex: tf.Tensor2D = tf.complex(real, imag);
-    expect(complex.dtype).to.equal("complex64");
+    expect(complex).to.haveDtype("complex64");
     expect(complex.size).to.equal(4);
   });
 });

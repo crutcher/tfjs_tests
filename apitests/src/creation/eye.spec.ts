@@ -1,4 +1,7 @@
-import { expect } from "chai";
+import * as chai from "chai";
+const expect = chai.expect;
+import { tensorChaiPlugin } from "../plugins/tensor-chai";
+chai.use(tensorChaiPlugin);
 import * as loader from "../load-tf";
 import type tfTypes from "@tensorflow/tfjs-core";
 
@@ -39,7 +42,7 @@ describe("tf.eye(numRows, numColumns?, batchShape?, dtype?): ", async () => {
       [0, 1, 0],
       [0, 0, 1],
     ];
-    expect(t.dtype).to.eql("int32");
+    expect(t).to.haveDtype("int32");
     expect(t.arraySync()).to.eql(expected);
   });
 });

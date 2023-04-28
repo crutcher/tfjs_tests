@@ -14,7 +14,7 @@ describe("tf.scalar(): ", () => {
   });
   it("  -- shapes", () => {
     const t: tf.Scalar = tf.scalar(true, "bool");
-    expect(t.dtype).to.equal("bool");
+    expect(t).to.haveDtype("bool");
     expect(t.shape).to.eql([]);
     // Note: arraySync converts bools to numbers (0 or 1)
     expect(t.arraySync()).to.eql(1);

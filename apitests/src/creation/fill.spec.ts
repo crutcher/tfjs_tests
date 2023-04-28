@@ -1,4 +1,7 @@
-import { expect } from "chai";
+import * as chai from "chai";
+const expect = chai.expect;
+import { tensorChaiPlugin } from "../plugins/tensor-chai";
+chai.use(tensorChaiPlugin);
 import * as loader from "../load-tf";
 import type tfTypes from "@tensorflow/tfjs-core";
 
@@ -25,7 +28,7 @@ describe("tf.fill(shape, value, dtype?): ", async () => {
   it("  -- dtype", () => {
     const t: tfTypes.Tensor2D = tf.fill([2, 1], 4, "int32");
     const expected = [[4], [4]];
-    expect(t.dtype).to.eql("int32");
+    expect(t).to.haveDtype("int32");
     expect(t.arraySync()).to.eql(expected);
   });
 });

@@ -13,7 +13,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
   });
   it("  -- tf.tensor1d()", () => {
     const t: tf.Tensor1D = tf.tensor1d([1, 2, 3, 4]);
-    expect(t.dtype).to.equal("float32");
+    expect(t).to.haveDtype("float32");
     expect(t).to.haveShape([4]);
     expect(t.arraySync()).to.eql([1, 2, 3, 4]);
   });
@@ -22,7 +22,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
       [1, 2],
       [3, 4],
     ]);
-    expect(t.dtype).to.equal("float32");
+    expect(t).to.haveDtype("float32");
     expect(t).to.haveShape([2, 2]);
     expect(t.arraySync()).to.eql([
       [1, 2],
@@ -42,7 +42,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
     ];
 
     const t: tf.Tensor3D = tf.tensor3d(array, undefined, "int32");
-    expect(t.dtype).to.equal("int32");
+    expect(t).to.haveDtype("int32");
     expect(t).to.haveShape([2, 2, 2]);
     expect(t.arraySync()).to.eql(array);
   });
@@ -71,7 +71,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
     ];
 
     const t: tf.Tensor4D = tf.tensor4d(array, undefined, "int32");
-    expect(t.dtype).to.equal("int32");
+    expect(t).to.haveDtype("int32");
     expect(t).to.haveShape([2, 2, 2, 2]);
     expect(t.arraySync()).to.eql(array);
   });
@@ -124,7 +124,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
     ];
 
     const t: tf.Tensor5D = tf.tensor5d(array);
-    expect(t.dtype).to.equal("float32");
+    expect(t).to.haveDtype("float32");
     expect(t).to.haveShape([2, 2, 2, 2, 3]);
     expect(t.arraySync()).to.eql(array);
   });
@@ -225,7 +225,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
     ];
 
     const t: tf.Tensor = tf.tensor6d(array);
-    expect(t.dtype).to.equal("float32");
+    expect(t).to.haveDtype("float32");
     expect(t).to.haveShape([2, 2, 2, 2, 2, 2]);
     expect(t.arraySync()).to.eql(array);
   });

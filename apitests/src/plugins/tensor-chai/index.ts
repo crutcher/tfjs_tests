@@ -11,6 +11,14 @@ export const tensorChaiPlugin: Chai.ChaiPlugin = function (
     const obj: tf.Tensor = utils.flag(this, "object");
     new Assertion(obj.shape).to.eql(arr);
   });
+
+  Assertion.addMethod(
+    "haveDtype",
+    function haveDtype(dtype: keyof tf.DataTypeMap) {
+      const obj: tf.Tensor = utils.flag(this, "object");
+      new Assertion(obj.dtype).to.eql(dtype);
+    }
+  );
 };
 
 // export default tensorChai;

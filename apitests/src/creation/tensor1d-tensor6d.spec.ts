@@ -15,7 +15,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
     const t: tf.Tensor1D = tf.tensor1d([1, 2, 3, 4]);
     expect(t).to.haveDtype("float32");
     expect(t).to.haveShape([4]);
-    expect(t.arraySync()).to.eql([1, 2, 3, 4]);
+    expect(t).to.lookLike([1, 2, 3, 4]);
   });
   it("  -- tf.tensor2d()", () => {
     const t: tf.Tensor2D = tf.tensor2d([

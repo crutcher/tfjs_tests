@@ -6,7 +6,7 @@ export const tensorChaiPlugin: Chai.ChaiPlugin = function (
 ) {
   const Assertion = chai.Assertion;
 
-  // your helpers here
+  // new chai assertions : " expect(tensor).to.haveShape "
   Assertion.addMethod("haveShape", function haveShape(arr) {
     const obj: tf.Tensor = utils.flag(this, "object");
     new Assertion(obj.shape).to.eql(arr);
@@ -19,6 +19,11 @@ export const tensorChaiPlugin: Chai.ChaiPlugin = function (
       new Assertion(obj.dtype).to.eql(dtype);
     }
   );
+
+  Assertion.addMethod("lookLike", function lookLike(arr) {
+    const obj: tf.Tensor = utils.flag(this, "object");
+    new Assertion(obj.arraySync()).to.eql(arr);
+  });
 };
 
 // export default tensorChai;

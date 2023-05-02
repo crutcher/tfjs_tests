@@ -1,11 +1,14 @@
-import { expect } from "chai";
+import * as chai from "chai";
+const expect = chai.expect;
+import { tensorChaiPlugin } from "../plugins/tensor-chai";
+chai.use(tensorChaiPlugin);
 import * as tf from "@tensorflow/tfjs";
 
 /* tf.TensorBuffer: A mutable object, similar to tf.Tensor, that allows users to set values at locations before converting to an immutable tf.Tensor. */
 describe("tf.buffer(): ", () => {
   it("  -- default options", () => {
     const buffer: tf.TensorBuffer<tf.Rank.R2> = tf.buffer([2, 2]);
-    expect(buffer.shape).to.eql([2, 2]);
+    expect(buffer).to.haveShape([2, 2]);
     expect(buffer.size).to.eql(4);
     buffer.set(4, 0, 0);
     buffer.set(6, 0, 1);
@@ -22,7 +25,7 @@ describe("tf.buffer(): ", () => {
       [2, 2],
       "int32"
     );
-    expect(buffer.dtype).to.equal("int32");
+    expect(buffer).to.haveDtype("int32");
   });
   it("  -- values", () => {
     const buffer: tf.TensorBuffer<tf.Rank.R2, keyof tf.DataTypeMap> = tf.buffer(

@@ -2,20 +2,24 @@ import * as chai from "chai";
 const expect = chai.expect;
 import { tensorChaiPlugin } from "../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
-import * as loader from "../load-tf";
 import type tfTypes from "@tensorflow/tfjs-core";
+import * as loader from "../load-tf";
 
-/* ---- tf.diag ---- *
-  Returns the imaginary part of a complex (or real) tensor.
-*/
-describe("tf.imag(complexTensor): ", () => {
+let tf: loader.TFModule;
+
+export function run() {
+  before((done) => {
+    loader.load().then((result: loader.TFModule) => {
+      tf = result;
+      // Complete the async stuff
+      done();
+    });
+  });
   // CONSTANTS
   const EXPECTED = [4.75, 5.75];
 
   // TESTS
   it("  -- basic", async () => {
-    const tf: loader.TFModule = await loader.load();
-
     const COMPLEX_TENSOR: tfTypes.Tensor = tf.complex(
       [-2.25, 3.25],
       [4.75, 5.75]
@@ -25,4 +29,4 @@ describe("tf.imag(complexTensor): ", () => {
     expect(t).to.haveShape([2]);
     expect(t).to.lookLike(EXPECTED);
   });
-});
+}

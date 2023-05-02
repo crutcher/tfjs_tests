@@ -2,12 +2,21 @@ import * as chai from "chai";
 const expect = chai.expect;
 import { tensorChaiPlugin } from "../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
-import * as tf from "@tensorflow/tfjs";
+import type tfTypes from "@tensorflow/tfjs-core";
+import * as loader from "../load-tf";
 
-/* tf.TensorBuffer: A mutable object, similar to tf.Tensor, that allows users to set values at locations before converting to an immutable tf.Tensor. */
-describe("tf.buffer(): ", () => {
+let tf: loader.TFModule;
+
+export function run() {
+  before((done) => {
+    loader.load().then((result: loader.TFModule) => {
+      tf = result;
+      // Complete the async stuff
+      done();
+    });
+  });
   it("  -- default options", () => {
-    const buffer: tf.TensorBuffer<tf.Rank.R2> = tf.buffer([2, 2]);
+    const buffer: tfTypes.TensorBuffer<tfTypes.Rank.R2> = tf.buffer([2, 2]);
     expect(buffer).to.haveShape([2, 2]);
     expect(buffer.size).to.eql(4);
     buffer.set(4, 0, 0);
@@ -21,22 +30,21 @@ describe("tf.buffer(): ", () => {
     expect(buffer.toTensor().arraySync()).to.eql(expected);
   });
   it("  -- dtype", () => {
-    const buffer: tf.TensorBuffer<tf.Rank.R2, "int32"> = tf.buffer(
+    const buffer: tfTypes.TensorBuffer<tfTypes.Rank.R2, "int32"> = tf.buffer(
       [2, 2],
       "int32"
     );
     expect(buffer).to.haveDtype("int32");
   });
   it("  -- values", () => {
-    const buffer: tf.TensorBuffer<tf.Rank.R2, keyof tf.DataTypeMap> = tf.buffer(
-      [2, 2],
-      undefined,
-      Int32Array.from([1, 2, 3, 4])
-    );
+    const buffer: tfTypes.TensorBuffer<
+      tfTypes.Rank.R2,
+      keyof tfTypes.DataTypeMap
+    > = tf.buffer([2, 2], undefined, Int32Array.from([1, 2, 3, 4]));
     const expected = [
       [1, 2],
       [3, 4],
     ];
     expect(buffer.toTensor().arraySync()).to.eql(expected);
   });
-});
+}

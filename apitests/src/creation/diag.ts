@@ -2,10 +2,13 @@ import * as chai from "chai";
 const expect = chai.expect;
 import { tensorChaiPlugin } from "../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
-import * as loader from "../load-tf";
 import type tfTypes from "@tensorflow/tfjs-core";
+import * as loader from "../load-tf";
 
-const arr2d = [
+let tf: loader.TFModule;
+
+//CONSTANTS
+const ARR_2D = [
   [
     [
       [1, 0],
@@ -71,14 +74,16 @@ const arr2d = [
   ],
 ];
 
-/* ---- tf.diag ----
-  Creates new tensor from argument tensor
-    -- each row is a copy of the argument tensor
-    -- expect all values are 0 except for the diagonal
-*/
-describe("tf.diag(tensor): ", () => {
+/* ---- Main ---- */
+export function run() {
+  before((done) => {
+    loader.load().then((result: loader.TFModule) => {
+      tf = result;
+      // Complete the async stuff
+      done();
+    });
+  });
   it("  -- 1d", async () => {
-    const tf: loader.TFModule = await loader.load();
     const x: tfTypes.Tensor1D = tf.tensor1d([1, 2, 3, 4]);
     const t = tf.diag(x);
     const expected = [
@@ -91,11 +96,10 @@ describe("tf.diag(tensor): ", () => {
     expect(t).to.lookLike(expected);
   });
   it("  -- 2d", async () => {
-    const tf: loader.TFModule = await loader.load();
     const x: tfTypes.Tensor2D = tf.tensor2d([1, 2, 3, 4, 5, 6, 7, 8], [4, 2]);
     const t = tf.diag(x);
     expect(t).to.haveShape([4, 2, 4, 2]);
-    const expected = arr2d;
+    const expected = ARR_2D;
     expect(t).to.lookLike(expected);
   });
-});
+}

@@ -2,16 +2,12 @@ import * as chai from "chai";
 const expect = chai.expect;
 import { tensorChaiPlugin } from "../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
-import * as loader from "../load-tf";
 import type tfTypes from "@tensorflow/tfjs-core";
+import * as loader from "../load-tf";
 
-/* ---- tf.oneHot(indices, depth, onValue?, offValue?, dtype?)---- *
-  1. The values represented by indices take on onValue (1) while others are offvalue (0)
-  2. rank(output) = rank(indices) + 1
-  3. Create a number of "rows" equal to indices.length
-  4. For each "row": set column value to 1 if column index is in indices, else 0
-*/
-describe("tf.oneHot(indices, depth, onValue?, offValue?, dtype?): ", () => {
+let tf: loader.TFModule;
+
+export function run() {
   // CONSTANTS
   const INDICES = [0, 1];
   const DEPTH = 3;
@@ -51,9 +47,14 @@ describe("tf.oneHot(indices, depth, onValue?, offValue?, dtype?): ", () => {
   ];
 
   // TESTS
+  before((done) => {
+    loader.load().then((result: loader.TFModule) => {
+      tf = result;
+      // Complete the async stuff
+      done();
+    });
+  });
   it("  -- basic", async () => {
-    const tf: loader.TFModule = await loader.load();
-
     INDICES_RESULTS.forEach(({ indices, expected }) => {
       const x: tfTypes.Tensor = tf.tensor(indices, undefined, "int32");
       const xShape: number[] = x.shape;
@@ -64,7 +65,6 @@ describe("tf.oneHot(indices, depth, onValue?, offValue?, dtype?): ", () => {
     });
   });
   it("  -- onValue, offValue", async () => {
-    const tf: loader.TFModule = await loader.load();
     //CONSTANTS
     const ON_VALUE = 8;
     const OFF_VALUE = 1;
@@ -81,7 +81,6 @@ describe("tf.oneHot(indices, depth, onValue?, offValue?, dtype?): ", () => {
     expect(t).to.lookLike(RESULT);
   });
   it("  -- dType", async () => {
-    const tf: loader.TFModule = await loader.load();
     //CONSTANTS
     const RESULT = [
       [1, 0, 0],
@@ -95,4 +94,4 @@ describe("tf.oneHot(indices, depth, onValue?, offValue?, dtype?): ", () => {
     expect(t).to.haveShape(expectedShape);
     expect(t).to.lookLike(RESULT);
   });
-});
+}

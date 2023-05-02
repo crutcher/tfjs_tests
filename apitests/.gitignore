@@ -10,6 +10,7 @@
 
 # production
 /build
+/src/old-tests
 
 # misc
 **/.DS_Store

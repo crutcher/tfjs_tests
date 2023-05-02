@@ -14,11 +14,11 @@ import * as scalar from "./scalar";
 import * as tensor from "./tensor";
 import * as tensorNd from "./tensorNd";
 
-// See: https://js.tensorflow.org/api/latest/#tensor
+/* ---- Creating Tensors ---- */
 describe("** CREATION **", () => {
   /* ---- tf.linspace(start, stop, num)---- *
   Return an evenly spaced sequence of numbers (including decimals) over the given interval.
-*/
+  */
   describe("tf.linspace(start, stop, num):", linspace.run.bind(this));
 
   /* ---- tf.buffer(start, stop, num)---- *

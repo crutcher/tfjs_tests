@@ -5,9 +5,9 @@ chai.use(tensorChaiPlugin);
 import * as loader from "../load-tf";
 import type tfTypes from "@tensorflow/tfjs-core";
 
-describe("tf.eye(numRows, numColumns?, batchShape?, dtype?): ", async () => {
-  const tf: loader.TFModule = await loader.load();
-  it("  -- basic", () => {
+describe("tf.eye(numRows, numColumns?, batchShape?, dtype?): ", () => {
+  it("  -- basic", async () => {
+    const tf: loader.TFModule = await loader.load();
     const t: tfTypes.Tensor2D = tf.eye(3);
     const expected = [
       [1, 0, 0],
@@ -16,7 +16,8 @@ describe("tf.eye(numRows, numColumns?, batchShape?, dtype?): ", async () => {
     ];
     expect(t.arraySync()).to.eql(expected);
   });
-  it("  -- numColumns", () => {
+  it("  -- numColumns", async () => {
+    const tf: loader.TFModule = await loader.load();
     const t: tfTypes.Tensor2D = tf.eye(3, 2);
     const expected = [
       [1, 0],
@@ -25,7 +26,8 @@ describe("tf.eye(numRows, numColumns?, batchShape?, dtype?): ", async () => {
     ];
     expect(t.arraySync()).to.eql(expected);
   });
-  it("  -- batchShape", () => {
+  it("  -- batchShape", async () => {
+    const tf: loader.TFModule = await loader.load();
     const t: tfTypes.Tensor2D = tf.eye(3, undefined, [1, 1]);
     const identityMatrix = [
       [1, 0, 0],
@@ -35,7 +37,8 @@ describe("tf.eye(numRows, numColumns?, batchShape?, dtype?): ", async () => {
     const expected = [[identityMatrix]];
     expect(t.arraySync()).to.eql(expected);
   });
-  it("  -- dtypes", () => {
+  it("  -- dtypes", async () => {
+    const tf: loader.TFModule = await loader.load();
     const t: tfTypes.Tensor2D = tf.eye(3, undefined, undefined, "int32");
     const expected = [
       [1, 0, 0],

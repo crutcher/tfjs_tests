@@ -1,9 +1,13 @@
+//Chai + chai plugins
 import * as chai from "chai";
 const expect = chai.expect;
 import { tensorChaiPlugin } from "../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
+//tensorflow + tensorflow dynamic loader
 import type tfTypes from "@tensorflow/tfjs-core";
 import * as loader from "../load-tf";
+// Utils
+import * as utils from "../utils";
 
 let tf: loader.TFModule;
 
@@ -47,7 +51,7 @@ export function run() {
     SHAPES_RESULTS.forEach(({ shape, result }) => {
       const t: tfTypes.Tensor = tf.ones(shape);
       expect(t).to.lookLike(result);
-      expect(_isAllOnes(t)).to.be.true;
+      expect(utils.isAllOnes(t)).to.be.true;
     });
   });
   it("  -- dtypes", () => {
@@ -55,14 +59,4 @@ export function run() {
     const t: tfTypes.Tensor = tf.ones(shape, "int32");
     expect(t).to.haveDtype("int32");
   });
-}
-
-function _isAllOnes(t: tfTypes.Tensor): boolean {
-  const result = true;
-  const unpacked = tf.unstack(tf.reshape(t, [-1]));
-  for (const el of unpacked) {
-    const elAsArray = el.dataSync();
-    if (elAsArray.length !== 1 || elAsArray[0] !== 1) return false;
-  }
-  return result;
 }

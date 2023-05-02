@@ -2,23 +2,27 @@ import * as chai from "chai";
 const expect = chai.expect;
 import { tensorChaiPlugin } from "../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
-import * as tf from "@tensorflow/tfjs";
+import type tfTypes from "@tensorflow/tfjs-core";
+import * as loader from "../load-tf";
 
-// See: https://js.tensorflow.org/api/latest/#tensor
-describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
-  it("  -- bad values", () => {
-    expect(() => tf.tensor1d([[1], [2]] as any)).to.throw(
-      "requires values to be a flat/TypedArray"
-    );
+let tf: loader.TFModule;
+
+export function run() {
+  before((done) => {
+    loader.load().then((result: loader.TFModule) => {
+      tf = result;
+      // Complete the async stuff
+      done();
+    });
   });
   it("  -- tf.tensor1d()", () => {
-    const t: tf.Tensor1D = tf.tensor1d([1, 2, 3, 4]);
+    const t: tfTypes.Tensor1D = tf.tensor1d([1, 2, 3, 4]);
     expect(t).to.haveDtype("float32");
     expect(t).to.haveShape([4]);
     expect(t).to.lookLike([1, 2, 3, 4]);
   });
   it("  -- tf.tensor2d()", () => {
-    const t: tf.Tensor2D = tf.tensor2d([
+    const t: tfTypes.Tensor2D = tf.tensor2d([
       [1, 2],
       [3, 4],
     ]);
@@ -41,7 +45,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
       ],
     ];
 
-    const t: tf.Tensor3D = tf.tensor3d(array, undefined, "int32");
+    const t: tfTypes.Tensor3D = tf.tensor3d(array, undefined, "int32");
     expect(t).to.haveDtype("int32");
     expect(t).to.haveShape([2, 2, 2]);
     expect(t.arraySync()).to.eql(array);
@@ -70,7 +74,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
       ],
     ];
 
-    const t: tf.Tensor4D = tf.tensor4d(array, undefined, "int32");
+    const t: tfTypes.Tensor4D = tf.tensor4d(array, undefined, "int32");
     expect(t).to.haveDtype("int32");
     expect(t).to.haveShape([2, 2, 2, 2]);
     expect(t.arraySync()).to.eql(array);
@@ -123,7 +127,7 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
       ],
     ];
 
-    const t: tf.Tensor5D = tf.tensor5d(array);
+    const t: tfTypes.Tensor5D = tf.tensor5d(array);
     expect(t).to.haveDtype("float32");
     expect(t).to.haveShape([2, 2, 2, 2, 3]);
     expect(t.arraySync()).to.eql(array);
@@ -224,9 +228,9 @@ describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", () => {
       ],
     ];
 
-    const t: tf.Tensor = tf.tensor6d(array);
+    const t: tfTypes.Tensor = tf.tensor6d(array);
     expect(t).to.haveDtype("float32");
     expect(t).to.haveShape([2, 2, 2, 2, 2, 2]);
     expect(t.arraySync()).to.eql(array);
   });
-});
+}

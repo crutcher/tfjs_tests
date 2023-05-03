@@ -1,6 +1,8 @@
 import * as chai from "chai";
 import { tensorChaiPlugin } from "../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
+import spies from "chai-spies";
+chai.use(spies);
 import * as imag from "./imag";
 import * as linspace from "./linspace";
 import * as buffer from "./buffer";
@@ -14,6 +16,10 @@ import * as scalar from "./scalar";
 import * as tensor from "./tensor";
 import * as tensorNd from "./tensorNd";
 import * as ones from "./ones";
+import * as onesLike from "./onesLike";
+import * as print from "./print";
+import * as range from "./range";
+import * as real from "./real";
 
 /* ---- Creating Tensors ---- */
 describe("** CREATION **", () => {
@@ -91,4 +97,27 @@ describe("** CREATION **", () => {
     Creates a tf.Tensor with all elements set to 1.
    */
   describe("tf.ones(shape, dytpe?)", ones.run.bind(this));
+
+  /* ---- onesLike ---- *
+    Creates a tf.Tensor with all elements set to 1 with the same shape as the given tensor.
+   */
+  describe("tf.oneLike(tensor)", onesLike.run.bind(this));
+
+  /* ---- print ---- *
+    Prints information about the tf.Tensor including its data
+   */
+  describe("tf.print(t, verbose?)", print.run.bind(this));
+
+  /* ---- range ---- *
+    Creates a new tf.Tensor1D filled with the numbers in the range provided.
+    The tensor is a half-open interval meaning it includes start, but excludes stop. Decrementing ranges and negative step values are also supported.
+   */
+  describe("tf.range(start, stop, step?, dtype?)", range.run.bind(this));
+
+  /* ---- real ---- *
+    Returns the real part of a complex (or real) tensor.
+    Given a tensor input, this operation returns a tensor of type float that is the real part of each element in input considered as a complex number.
+    If the input is real, it simply makes a clone.
+  */
+  describe("tf.real(tensor)", real.run.bind(this));
 });

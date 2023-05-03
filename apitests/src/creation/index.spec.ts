@@ -18,6 +18,7 @@ import * as tensorNd from "./tensorNd";
 import * as ones from "./ones";
 import * as onesLike from "./onesLike";
 import * as print from "./print";
+import * as range from "./range";
 
 /* ---- Creating Tensors ---- */
 describe("** CREATION **", () => {
@@ -100,8 +101,15 @@ describe("** CREATION **", () => {
     Creates a tf.Tensor with all elements set to 1 with the same shape as the given tensor.
    */
   describe("tf.oneLike(tensor)", onesLike.run.bind(this));
+
   /* ---- print ---- *
     Prints information about the tf.Tensor including its data
    */
   describe("tf.print(t, verbose?)", print.run.bind(this));
+
+  /* ---- range ---- *
+    Creates a new tf.Tensor1D filled with the numbers in the range provided.
+    The tensor is a half-open interval meaning it includes start, but excludes stop. Decrementing ranges and negative step values are also supported.
+   */
+  describe("tf.range(start, stop, step?, dtype?)", range.run.bind(this));
 });

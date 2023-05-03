@@ -28,10 +28,8 @@ export function run() {
   it("  -- verbose", () => {
     const verbose = true;
     const t: tfTypes.Tensor = tf.tensor(["ts.print()"]);
-    const TPrintVerbose = t.print.bind(t, verbose);
-    t.print = TPrintVerbose;
     const spy = chai.spy.on(t, "print");
-    t.print();
+    t.print(verbose);
     expect(spy).to.have.been.called();
   });
 }

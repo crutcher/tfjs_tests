@@ -4,6 +4,7 @@ declare global {
   namespace Chai {
     interface Assertion {
       haveShape(shape: Array<number>): void;
+      haveSize(size: number): void;
       haveDtype(dtype: keyof tf.DataTypeMap): void;
       lookLike(
         arr:

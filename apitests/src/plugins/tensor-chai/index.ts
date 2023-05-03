@@ -12,6 +12,11 @@ export const tensorChaiPlugin: Chai.ChaiPlugin = function (
     new Assertion(obj.shape).to.eql(arr);
   });
 
+  Assertion.addMethod("haveSize", function haveSize(num: number) {
+    const obj: tf.Tensor = utils.flag(this, "object");
+    new Assertion(obj.size).to.eql(num);
+  });
+
   Assertion.addMethod(
     "haveDtype",
     function haveDtype(dtype: keyof tf.DataTypeMap) {

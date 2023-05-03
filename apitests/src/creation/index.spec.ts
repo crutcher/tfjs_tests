@@ -13,12 +13,13 @@ import * as oneHot from "./oneHot";
 import * as scalar from "./scalar";
 import * as tensor from "./tensor";
 import * as tensorNd from "./tensorNd";
+import * as ones from "./ones";
 
-// See: https://js.tensorflow.org/api/latest/#tensor
+/* ---- Creating Tensors ---- */
 describe("** CREATION **", () => {
   /* ---- tf.linspace(start, stop, num)---- *
   Return an evenly spaced sequence of numbers (including decimals) over the given interval.
-*/
+  */
   describe("tf.linspace(start, stop, num):", linspace.run.bind(this));
 
   /* ---- tf.buffer(start, stop, num)---- *
@@ -85,4 +86,9 @@ describe("** CREATION **", () => {
   /* ---- tensor 1D-6D ---- *
    */
   describe("tf.tensorNd() : n∈{1, 2, 3, 4, 5, 6}", tensorNd.run.bind(this));
+
+  /* ---- ones ---- *
+    Creates a tf.Tensor with all elements set to 1.
+   */
+  describe("tf.ones(shape, dytpe?)", ones.run.bind(this));
 });

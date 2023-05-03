@@ -6,8 +6,6 @@ chai.use(tensorChaiPlugin);
 //tensorflow + tensorflow dynamic loader
 import type tfTypes from "@tensorflow/tfjs-core";
 import * as loader from "../load-tf";
-// Utils
-import * as utils from "../utils";
 
 let tf: loader.TFModule;
 
@@ -51,7 +49,7 @@ export function run() {
     SHAPES_RESULTS.forEach(({ shape, result }) => {
       const t: tfTypes.Tensor = tf.ones(shape);
       expect(t).to.lookLike(result);
-      expect(utils.isAllOnes(t)).to.be.true;
+      expect(t).to.be.filledWith(1);
     });
   });
   it("  -- dtypes", () => {

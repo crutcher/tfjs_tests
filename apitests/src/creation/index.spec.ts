@@ -14,6 +14,7 @@ import * as scalar from "./scalar";
 import * as tensor from "./tensor";
 import * as tensorNd from "./tensorNd";
 import * as ones from "./ones";
+import * as onesLike from "./onesLike";
 
 /* ---- Creating Tensors ---- */
 describe("** CREATION **", () => {
@@ -91,4 +92,9 @@ describe("** CREATION **", () => {
     Creates a tf.Tensor with all elements set to 1.
    */
   describe("tf.ones(shape, dytpe?)", ones.run.bind(this));
+
+  /* ---- onesLike ---- *
+    Creates a tf.Tensor with all elements set to 1 with the same shape as the given tensor.
+   */
+  describe("tf.oneLike(tensor)", onesLike.run.bind(this));
 });

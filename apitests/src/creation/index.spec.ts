@@ -19,6 +19,7 @@ import * as ones from "./ones";
 import * as onesLike from "./onesLike";
 import * as print from "./print";
 import * as range from "./range";
+import * as real from "./real";
 
 /* ---- Creating Tensors ---- */
 describe("** CREATION **", () => {
@@ -112,4 +113,11 @@ describe("** CREATION **", () => {
     The tensor is a half-open interval meaning it includes start, but excludes stop. Decrementing ranges and negative step values are also supported.
    */
   describe("tf.range(start, stop, step?, dtype?)", range.run.bind(this));
+
+  /* ---- real ---- *
+    Returns the real part of a complex (or real) tensor.
+    Given a tensor input, this operation returns a tensor of type float that is the real part of each element in input considered as a complex number.
+    If the input is real, it simply makes a clone.
+  */
+  describe("tf.real(tensor)", real.run.bind(this));
 });

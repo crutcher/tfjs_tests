@@ -1,6 +1,8 @@
 import * as chai from "chai";
 import { tensorChaiPlugin } from "../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
+import spies from "chai-spies";
+chai.use(spies);
 import * as imag from "./imag";
 import * as linspace from "./linspace";
 import * as buffer from "./buffer";
@@ -15,6 +17,7 @@ import * as tensor from "./tensor";
 import * as tensorNd from "./tensorNd";
 import * as ones from "./ones";
 import * as onesLike from "./onesLike";
+import * as print from "./print";
 
 /* ---- Creating Tensors ---- */
 describe("** CREATION **", () => {
@@ -97,4 +100,8 @@ describe("** CREATION **", () => {
     Creates a tf.Tensor with all elements set to 1 with the same shape as the given tensor.
    */
   describe("tf.oneLike(tensor)", onesLike.run.bind(this));
+  /* ---- print ---- *
+    Prints information about the tf.Tensor including its data
+   */
+  describe("tf.print(t, verbose?)", print.run.bind(this));
 });

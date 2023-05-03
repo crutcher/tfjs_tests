@@ -1,4 +1,7 @@
 import tf from "@tensorflow/tfjs-core";
+// Utils
+import { TensorUtils } from "../../utils";
+import { BasicType } from "../../utils";
 
 export const tensorChaiPlugin: Chai.ChaiPlugin = function (
   chai: Chai.ChaiStatic,
@@ -28,6 +31,12 @@ export const tensorChaiPlugin: Chai.ChaiPlugin = function (
   Assertion.addMethod("lookLike", function lookLike(arr) {
     const obj: tf.Tensor = utils.flag(this, "object");
     new Assertion(obj.arraySync()).to.eql(arr);
+  });
+
+  Assertion.addMethod("filledWith", function filledWith(val: BasicType) {
+    const obj: tf.Tensor = utils.flag(this, "object");
+    const isFilled = TensorUtils.isFilledWith(val, obj);
+    new Assertion(isFilled).to.be.true;
   });
 };
 

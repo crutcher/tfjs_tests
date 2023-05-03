@@ -1,3 +1,4 @@
+import { BasicType } from "../../utils";
 export {};
 declare global {
   // type nArray = number[] | number[][] | number[][][] | number[][][][] | number[][][][][] | number[][][][][][]};
@@ -15,6 +16,7 @@ declare global {
           | number[][][][][]
           | number[][][][][][]
       ): void;
+      filledWith(val: BasicType): void;
     }
   }
 }

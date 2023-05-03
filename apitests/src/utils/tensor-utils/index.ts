@@ -1,10 +1,9 @@
 import * as tf from "@tensorflow/tfjs-core";
 
+export type BasicType = number | string | boolean;
+
 /* --- Returns true tensor is filled with a single value, n */
-export function isFilledWith(
-  n: number | string | boolean,
-  t: tf.Tensor
-): boolean {
+export function isFilledWith(n: BasicType, t: tf.Tensor): boolean {
   const unpacked = tf.unstack(tf.reshape(t, [-1]));
   for (const el of unpacked) {
     const elAsArray = el.dataSync();

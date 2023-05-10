@@ -20,6 +20,7 @@ import * as onesLike from "./onesLike";
 import * as print from "./print";
 import * as range from "./range";
 import * as real from "./real";
+import * as truncatedNormal from "./truncatedNormal";
 
 /* ---- Creating Tensors ---- */
 describe("** CREATION **", () => {
@@ -120,4 +121,9 @@ describe("** CREATION **", () => {
     If the input is real, it simply makes a clone.
   */
   describe("tf.real(tensor)", real.run.bind(this));
+
+  /* ---- truncatedNormal ---- *
+    Creates a tf.Tensor with values sampled from a truncated normal distribution.
+  */
+  describe("tf.real(tensor)", truncatedNormal.run.bind(this));
 });

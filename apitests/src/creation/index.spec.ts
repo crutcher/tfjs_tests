@@ -21,6 +21,7 @@ import * as print from "./print";
 import * as range from "./range";
 import * as real from "./real";
 import * as truncatedNormal from "./truncatedNormal";
+import * as variable from "./variable";
 
 /* ---- Creating Tensors ---- */
 describe("** CREATION **", () => {
@@ -125,5 +126,15 @@ describe("** CREATION **", () => {
   /* ---- truncatedNormal ---- *
     Creates a tf.Tensor with values sampled from a truncated normal distribution.
   */
-  describe("tf.real(tensor)", truncatedNormal.run.bind(this));
+  describe(
+    "tf.truncatedNormal(shape, mean?, stdDev?, dtype?, seed?)",
+    truncatedNormal.run.bind(this)
+  );
+  /* ---- variable ---- *
+    Creates a new variable with the provided initial value.
+  */
+  describe(
+    "tf.variable(initialValue, trainable?, name?, dtype?)",
+    variable.run.bind(this)
+  );
 });

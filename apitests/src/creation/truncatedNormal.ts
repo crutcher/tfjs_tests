@@ -5,8 +5,6 @@ chai.use(tensorChaiPlugin);
 import type tfTypes from "@tensorflow/tfjs-core";
 import * as loader from "../load-tf";
 
-import { forEachTensorValue } from "../utils/tensor-utils";
-
 let tf: loader.TFModule;
 
 export function run() {

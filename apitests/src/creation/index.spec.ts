@@ -148,4 +148,5 @@ describe("** CREATION **", () => {
   /* ---- zerosLike ---- *
     Creates a tf.Tensor with all elements set to 0 with the same shape as the given tensor.
   */
+  describe("tf.zerosLike(tensor?)", zerosLike.run.bind(this));
 });

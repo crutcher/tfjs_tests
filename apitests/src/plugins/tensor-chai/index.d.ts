@@ -17,6 +17,8 @@ declare global {
           | number[][][][][][]
       ): void;
       filledWith(val: BasicType): void;
+      allZeros(): void;
+      allOnes(): void;
       allValuesInRange(start: number, end: number): void;
     }
   }

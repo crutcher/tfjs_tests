@@ -2,36 +2,54 @@ import * as tf from "@tensorflow/tfjs-core";
 
 export type BasicType = number | string | boolean;
 
-/* --- Returns true tensor is filled with a single value, n */
-export function isFilledWith(n: BasicType, t: tf.Tensor): boolean {
-  const unpacked = tf.unstack(tf.reshape(t, [-1]));
-  for (const el of unpacked) {
-    const elAsArray = el.dataSync();
-    if (elAsArray.length == 0) return true;
-    if (elAsArray.length !== 1 || elAsArray[0] !== n) return false;
-  }
-  return true;
-}
-
-export const isAllOnes = isFilledWith.bind(null, 1);
-
 /* --- Loops over all values in tensor */
-export function forEachTensorValue(
+export function forEachTensorValue<T>(
   t: tf.Tensor,
-  callback: (val: number) => void
-): void {
+  callback: (val: number) => T
+): T | void {
   const unpacked = tf.unstack(tf.reshape(t, [-1]));
   for (const el of unpacked) {
     const elAsArray = el.dataSync();
     if (elAsArray.length !== 1) return;
     const item = elAsArray[0];
     // callback on item
-    callback(item);
+    return callback(item);
   }
 }
 
+export function isTrueForEach(
+  t: tf.Tensor,
+  callback: (val: number) => boolean
+): boolean {
+  forEachTensorValue(t, (val) => {
+    if (!callback(val)) {
+      return false;
+    }
+  });
+  return true;
+}
+
+export function isFilledWith(t: tf.Tensor, val: number): boolean {
+  forEachTensorValue(t, (item) => {
+    if (item !== val) {
+      return false;
+    }
+  });
+  return true;
+}
+
+export function isAllZeros(t: tf.Tensor): boolean {
+  return isTrueForEach(t, (val) => val === 0);
+}
+
+export function isAllOnes(t: tf.Tensor): boolean {
+  return isTrueForEach(t, (val) => val === 1);
+}
+
 export default {
-  isFilledWith,
-  isAllOnes,
   forEachTensorValue,
+  isFilledWith,
+  isTrueForEach,
+  isAllZeros,
+  isAllOnes,
 };

@@ -22,6 +22,7 @@ import * as range from "./range";
 import * as real from "./real";
 import * as truncatedNormal from "./truncatedNormal";
 import * as variable from "./variable";
+import * as zeros from "./zeros";
 
 /* ---- Creating Tensors ---- */
 describe("** CREATION **", () => {
@@ -137,4 +138,9 @@ describe("** CREATION **", () => {
     "tf.variable(initialValue, trainable?, name?, dtype?)",
     variable.run.bind(this)
   );
+
+  /* ---- zeros ---- *
+    Creates a tf.Tensor with all elements set to 0.
+  */
+  describe("tf.zeros(shape, dtype?)", zeros.run.bind(this));
 });

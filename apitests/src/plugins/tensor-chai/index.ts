@@ -36,9 +36,22 @@ export const tensorChaiPlugin: Chai.ChaiPlugin = function (
 
   Assertion.addMethod("filledWith", function filledWith(val: BasicType) {
     const obj: tf.Tensor = utils.flag(this, "object");
-    const isFilled = TensorUtils.isFilledWith(val, obj);
+    const isFilled = TensorUtils.isTrueForEach(obj, (item) => item === val);
     new Assertion(isFilled).to.be.true;
   });
+
+  Assertion.addMethod("allZeros", function allZeros() {
+    const obj: tf.Tensor = utils.flag(this, "object");
+    const isAllZeros = TensorUtils.isAllZeros(obj);
+    new Assertion(isAllZeros).to.be.true;
+  });
+
+  Assertion.addMethod("allOnes", function allOnes() {
+    const obj: tf.Tensor = utils.flag(this, "object");
+    const isAllOnes = TensorUtils.isAllOnes(obj);
+    new Assertion(isAllOnes).to.be.true;
+  });
+
   Assertion.addMethod(
     "allValuesInRange",
     function allValuesInRange(start: number, end: number) {
@@ -49,5 +62,3 @@ export const tensorChaiPlugin: Chai.ChaiPlugin = function (
     }
   );
 };
-
-// export default tensorChai;

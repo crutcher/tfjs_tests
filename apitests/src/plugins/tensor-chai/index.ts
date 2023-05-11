@@ -40,13 +40,13 @@ export const tensorChaiPlugin: Chai.ChaiPlugin = function (
     new Assertion(isFilled).to.be.true;
   });
 
-  Assertion.addMethod("allZeros", function allZeros() {
+  Assertion.addProperty("allZeros", function allZerosTest() {
     const obj: tf.Tensor = utils.flag(this, "object");
     const isAllZeros = TensorUtils.isAllZeros(obj);
     new Assertion(isAllZeros).to.be.true;
   });
 
-  Assertion.addMethod("allOnes", function allOnes() {
+  Assertion.addProperty("allOnes", function allZerosTest() {
     const obj: tf.Tensor = utils.flag(this, "object");
     const isAllOnes = TensorUtils.isAllOnes(obj);
     new Assertion(isAllOnes).to.be.true;

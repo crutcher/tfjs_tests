@@ -49,7 +49,7 @@ export function run() {
     SHAPES_RESULTS.forEach(({ shape, result }) => {
       const t: tfTypes.Tensor = tf.ones(shape);
       expect(t).to.lookLike(result);
-      expect(t).to.be.allOnes();
+      expect(t).to.be.allOnes;
     });
   });
   it("  -- dtypes", () => {

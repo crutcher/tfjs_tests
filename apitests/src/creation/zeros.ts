@@ -19,6 +19,6 @@ export function run() {
   // TESTS
   it("  -- default", async () => {
     const t: tfTypes.Tensor = tf.zeros([2, 2]);
-    expect(t).to.be.allZeros();
+    expect(t).to.be.allZeros;
   });
 }

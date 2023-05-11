@@ -25,6 +25,6 @@ export function run() {
     const t: tfTypes.Tensor = tf.zerosLike(x);
     expect(t).to.haveShape(x.shape);
     expect(t).to.haveSize(x.size);
-    expect(t).to.be.allZeros();
+    expect(t).to.be.allZeros;
   });
 }

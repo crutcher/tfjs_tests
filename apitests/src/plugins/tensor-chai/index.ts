@@ -2,6 +2,7 @@ import tf from "@tensorflow/tfjs-core";
 // Utils
 import { TensorUtils } from "../../utils";
 import { BasicType } from "../../utils";
+import tensorUtils from "../../utils/tensor-utils";
 
 export const tensorChaiPlugin: Chai.ChaiPlugin = function (
   chai: Chai.ChaiStatic,
@@ -35,9 +36,29 @@ export const tensorChaiPlugin: Chai.ChaiPlugin = function (
 
   Assertion.addMethod("filledWith", function filledWith(val: BasicType) {
     const obj: tf.Tensor = utils.flag(this, "object");
-    const isFilled = TensorUtils.isFilledWith(val, obj);
+    const isFilled = TensorUtils.isTrueForEach(obj, (item) => item === val);
     new Assertion(isFilled).to.be.true;
   });
-};
 
-// export default tensorChai;
+  Assertion.addProperty("allZeros", function allZerosTest() {
+    const obj: tf.Tensor = utils.flag(this, "object");
+    const isAllZeros = TensorUtils.isAllZeros(obj);
+    new Assertion(isAllZeros).to.be.true;
+  });
+
+  Assertion.addProperty("allOnes", function allZerosTest() {
+    const obj: tf.Tensor = utils.flag(this, "object");
+    const isAllOnes = TensorUtils.isAllOnes(obj);
+    new Assertion(isAllOnes).to.be.true;
+  });
+
+  Assertion.addMethod(
+    "allValuesInRange",
+    function allValuesInRange(start: number, end: number) {
+      const obj: tf.Tensor = utils.flag(this, "object");
+      tensorUtils.forEachTensorValue(obj, (val) => {
+        new Assertion(val).to.be.within(start, end);
+      });
+    }
+  );
+};

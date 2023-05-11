@@ -27,7 +27,7 @@ export function run() {
     const t: tfTypes.Tensor = tf.onesLike(x);
     expect(t).to.haveShape(xShape);
     expect(t).to.haveSize(xSize);
-    expect(t).to.be.filledWith(1);
+    expect(t).to.be.allOnes;
   });
   it("  -- from typed array", () => {
     const typedArray = new Int32Array(TEST_ARRAY);
@@ -35,13 +35,13 @@ export function run() {
     const shape = [TEST_ARRAY.length];
     expect(t).to.haveShape(shape);
     expect(t).to.haveSize(TEST_ARRAY.length);
-    expect(t).to.be.filledWith(1);
+    expect(t).to.be.allOnes;
   });
   it("  -- from empty array", () => {
     const typedArray = new Int32Array([]);
     const t: tfTypes.Tensor = tf.onesLike(typedArray);
     expect(t).to.haveShape([0]);
     expect(t).to.haveSize(0);
-    expect(t).to.be.filledWith(1);
+    expect(t).to.be.allOnes;
   });
 }

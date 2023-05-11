@@ -20,6 +20,10 @@ import * as onesLike from "./onesLike";
 import * as print from "./print";
 import * as range from "./range";
 import * as real from "./real";
+import * as truncatedNormal from "./truncatedNormal";
+import * as variable from "./variable";
+import * as zeros from "./zeros";
+import * as zerosLike from "./zerosLike";
 
 /* ---- Creating Tensors ---- */
 describe("** CREATION **", () => {
@@ -120,4 +124,29 @@ describe("** CREATION **", () => {
     If the input is real, it simply makes a clone.
   */
   describe("tf.real(tensor)", real.run.bind(this));
+
+  /* ---- truncatedNormal ---- *
+    Creates a tf.Tensor with values sampled from a truncated normal distribution.
+  */
+  describe(
+    "tf.truncatedNormal(shape, mean?, stdDev?, dtype?, seed?)",
+    truncatedNormal.run.bind(this)
+  );
+  /* ---- variable ---- *
+    Creates a new variable with the provided initial value.
+  */
+  describe(
+    "tf.variable(initialValue, trainable?, name?, dtype?)",
+    variable.run.bind(this)
+  );
+
+  /* ---- zeros ---- *
+    Creates a tf.Tensor with all elements set to 0.
+  */
+  describe("tf.zeros(shape, dtype?)", zeros.run.bind(this));
+
+  /* ---- zerosLike ---- *
+    Creates a tf.Tensor with all elements set to 0 with the same shape as the given tensor.
+  */
+  describe("tf.zerosLike(tensor?)", zerosLike.run.bind(this));
 });

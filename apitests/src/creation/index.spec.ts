@@ -23,6 +23,7 @@ import * as real from "./real";
 import * as truncatedNormal from "./truncatedNormal";
 import * as variable from "./variable";
 import * as zeros from "./zeros";
+import * as zerosLike from "./zerosLike";
 
 /* ---- Creating Tensors ---- */
 describe("** CREATION **", () => {
@@ -143,4 +144,8 @@ describe("** CREATION **", () => {
     Creates a tf.Tensor with all elements set to 0.
   */
   describe("tf.zeros(shape, dtype?)", zeros.run.bind(this));
+
+  /* ---- zerosLike ---- *
+    Creates a tf.Tensor with all elements set to 0 with the same shape as the given tensor.
+  */
 });

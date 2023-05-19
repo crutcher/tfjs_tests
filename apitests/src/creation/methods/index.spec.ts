@@ -1,5 +1,5 @@
 import * as chai from "chai";
-import { tensorChaiPlugin } from "../plugins/tensor-chai";
+import { tensorChaiPlugin } from "../../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
 import spies from "chai-spies";
 chai.use(spies);
@@ -25,8 +25,8 @@ import * as variable from "./variable";
 import * as zeros from "./zeros";
 import * as zerosLike from "./zerosLike";
 
-/* ---- Creating Tensors ---- */
-describe("** CREATION **", () => {
+/* ---- Creating Tensors: Tf methods that return a tensor ---- */
+describe("** CREATION: Methods **", () => {
   /* ---- tf.linspace(start, stop, num)---- *
   Return an evenly spaced sequence of numbers (including decimals) over the given interval.
   */

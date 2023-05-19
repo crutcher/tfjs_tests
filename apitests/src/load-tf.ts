@@ -7,14 +7,6 @@ EXPORTS: load() function, TFModule type
 ( To Import this module elsewhere: "import * from load-tf" ) 
 */
 
-/* -- Types -- */
-// private
-type GPUModule = typeof import("@tensorflow/tfjs-node-gpu");
-type JSModule = typeof import("@tensorflow/tfjs");
-type NodeModule = typeof import("@tensorflow/tfjs-node");
-// public
-export type TFModule = GPUModule | JSModule | NodeModule;
-
 /* -- Constants -- */
 
 // posible values of TF_MODULE. TF_MODULE must match a tensorflowjs module name
@@ -23,9 +15,29 @@ const MODULES = {
   "tfjs-node-gpu": "tfjs-node-gpu",
   "tfjs-node": "tfjs-node",
 };
-const DEFAULT_MODULE = MODULES.tfjs;
+const DEFAULT_MODULE = MODULES.tfjs as ModuleSetting;
+
+/* -- Types -- */
+// private
+type GPUModule = typeof import("@tensorflow/tfjs-node-gpu");
+type JSModule = typeof import("@tensorflow/tfjs");
+type NodeModule = typeof import("@tensorflow/tfjs-node");
+// public
+export type ModuleSetting = keyof typeof MODULES;
+export type TFModule = GPUModule | JSModule | NodeModule;
 
 /* -- Functions: -- */
+
+export function getModuleSetting(): ModuleSetting {
+  let module: ModuleSetting;
+  const moduleFromEnv = process.env.TF_MODULE;
+  if (!moduleFromEnv || !(moduleFromEnv in MODULES)) {
+    module = DEFAULT_MODULE;
+  } else {
+    module = moduleFromEnv as ModuleSetting;
+  }
+  return module;
+}
 
 /* load(): Loads tensorflow library dynamically based on OS */
 export async function load(): Promise<TFModule> {

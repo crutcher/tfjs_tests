@@ -1,11 +1,10 @@
 //Chai + chai plugins
 import * as chai from "chai";
 const expect = chai.expect;
-import { tensorChaiPlugin } from "../plugins/tensor-chai";
+import { tensorChaiPlugin } from "../../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
-//tensorflow + tensorflow dynamic loader
 import type tfTypes from "@tensorflow/tfjs-core";
-import * as loader from "../load-tf";
+import * as loader from "../../load-tf";
 
 let tf: loader.TFModule;
 

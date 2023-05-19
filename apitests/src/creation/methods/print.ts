@@ -5,6 +5,7 @@ import spies from "chai-spies";
 chai.use(spies);
 import { tensorChaiPlugin } from "../../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
+import * as sinon from "sinon";
 //tensorflow + tensorflow dynamic loader
 import type tfTypes from "@tensorflow/tfjs-core";
 import * as loader from "../../load-tf";
@@ -20,16 +21,28 @@ export function run() {
     });
   });
   it("  -- default", () => {
-    const t: tfTypes.Tensor = tf.tensor(["ts.print()", "ts.print()"]);
-    const spy = chai.spy.on(t, "print");
-    t.print();
-    expect(spy).to.have.been.called();
+    const t: tfTypes.Tensor = tf.tensor([2, 3]);
+    const stub = sinon.stub(t, "print").callsFake((verbose = false): string => {
+      return t.toString(verbose);
+    });
+    const output = t.print();
+    stub.restore();
+    expect(output).to.eql("Tensor\n" + "    [2, 3]");
   });
   it("  -- verbose", () => {
-    const verbose = true;
-    const t: tfTypes.Tensor = tf.tensor(["ts.print()"]);
-    const spy = chai.spy.on(t, "print");
-    t.print(verbose);
-    expect(spy).to.have.been.called();
+    const t: tfTypes.Tensor = tf.tensor([2, 3]);
+    const stub = sinon.stub(t, "print").callsFake((verbose = false): string => {
+      return t.toString(verbose);
+    });
+    const output = t.print(true);
+    stub.restore();
+    expect(output).to.eql(
+      "Tensor\n" +
+        "  dtype: float32\n" +
+        "  rank: 1\n" +
+        "  shape: [2]\n" +
+        "  values:\n" +
+        "    [2, 3]"
+    );
   });
 }

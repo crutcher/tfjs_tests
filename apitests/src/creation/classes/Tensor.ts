@@ -5,6 +5,8 @@ chai.use(tensorChaiPlugin);
 import * as sinon from "sinon";
 import type tfTypes from "@tensorflow/tfjs-core";
 import * as loader from "../../load-tf";
+// utils
+import { areEqual } from "../../utils/tensor-utils";
 
 let tf: loader.TFModule;
 
@@ -135,5 +137,28 @@ export function run() {
     const output = t.print();
     stub.restore();
     expect(output).to.eql("Tensor\n" + "    [2, 3]");
+  });
+  it("  -- Tensor.clone()", () => {
+    /*
+    Returns a copy of the tensor.
+    */
+    const a: tfTypes.Tensor<tfTypes.Rank.R1> = tf.tensor([
+      [1, 2],
+      [3, 4],
+    ]);
+    const b: tfTypes.Tensor<tfTypes.Rank.R1> = a.clone();
+    const isEqual: boolean = areEqual(a, b);
+    expect(isEqual).to.eql(true);
+  });
+  it("  -- Tensor.toString()", () => {
+    /*
+    Returns a human-readable description of the tensor. Useful for logging.
+    */
+    const t: tfTypes.Tensor<tfTypes.Rank.R1> = tf.tensor([
+      [1, 2],
+      [3, 4],
+    ]);
+    const expected = "Tensor\n" + "    [[1, 2],\n" + "     [3, 4]]";
+    expect(t.toString()).to.eql(expected);
   });
 }

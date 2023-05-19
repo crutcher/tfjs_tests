@@ -24,6 +24,7 @@ type JSModule = typeof import("@tensorflow/tfjs");
 type NodeModule = typeof import("@tensorflow/tfjs-node");
 // public
 export type ModuleSetting = keyof typeof MODULES;
+export type TFBackend = "cpu" | "webgl" | "webgpu" | "wasm";
 export type TFModule = GPUModule | JSModule | NodeModule;
 
 /* -- Functions: -- */
@@ -37,6 +38,10 @@ export function getModuleSetting(): ModuleSetting {
     module = moduleFromEnv as ModuleSetting;
   }
   return module;
+}
+
+export function getBackend(tf: TFModule): string {
+  return tf.getBackend();
 }
 
 /* load(): Loads tensorflow library dynamically based on OS */

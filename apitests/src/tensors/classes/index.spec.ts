@@ -6,7 +6,7 @@ chai.use(spies);
 import * as Tensor from "./Tensor";
 
 /* ---- Creating Tensors: tf classes related to tensors ---- */
-describe("** CREATION: Classes **", () => {
+describe("**** TENSORS: Classes ****", () => {
   /* ---- tf.Tensor class---- *
   A tf.Tensor object represents an immutable, multidimensional array of numbers that has a shape and a data type.
   */

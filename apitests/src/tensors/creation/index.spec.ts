@@ -26,7 +26,7 @@ import * as zeros from "./zeros";
 import * as zerosLike from "./zerosLike";
 
 /* ---- Creating Tensors: Tf methods that return a tensor ---- */
-describe("** CREATION: Methods **", () => {
+describe("**** TENSORS: Creation ****", () => {
   /* ---- tf.linspace(start, stop, num)---- *
   Return an evenly spaced sequence of numbers (including decimals) over the given interval.
   */

@@ -19,7 +19,7 @@ const CROPS = [
 
 /**** ---- MOCHA TEST FUNCTION: ---- *****/
 
-/* -- tf.Variable class methods-- */
+/* -- tf.batchToSpaceND(x, blockShape, crops)-- */
 export function run() {
   /* HOOKS: */
   before((done) => {

@@ -18,7 +18,7 @@ const DEFAULT_EXPECTED_RESULT = [
 
 /**** ---- MOCHA TEST FUNCTION: ---- *****/
 
-/* -- tf.Variable class methods-- */
+/* -- tf.broadcastTo (x, shape)-- */
 export function run() {
   /* HOOKS: */
   before((done) => {

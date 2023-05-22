@@ -14,8 +14,11 @@ let tf: loader.TFModule;
 /* TYPES: */
 type TypedArray = Float32Array | Int32Array | Uint8Array | Uint16Array;
 
+/**** ---- MOCHA TEST FUNCTION: ---- *****/
+
 /* -- tf.Tensor class methods-- */
 export function run() {
+  /* HOOKS: */
   before((done) => {
     loader.load().then((result: loader.TFModule) => {
       tf = result;
@@ -23,6 +26,8 @@ export function run() {
       done();
     });
   });
+
+  /* TESTS: */
   it("  -- Tensor.buffer()", async () => {
     // Returns a promise of tf.TensorBuffer that holds the underlying data.
     const t: tfTypes.Tensor<tfTypes.Rank.R1> = tf.tensor([2, 3]);

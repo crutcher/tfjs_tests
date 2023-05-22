@@ -18,11 +18,11 @@ type TensorShape =
   | [number, number, number, number, number]
   | [number, number, number, number, number, number];
 
-/* MOCHA TEST FUNCTION: */
+/**** ---- MOCHA TEST FUNCTION: ---- *****/
 
 /* -- tf.Variable class methods-- */
 export function run() {
-  // **CONSTANTS:**
+  /* CONSTANTS: */
   const INITIAL = [1, 2, 3];
   const NEW_VALUES = [4, 5, 6];
   const BAD_NEW_VALUES = [
@@ -30,7 +30,7 @@ export function run() {
     [9, 10],
   ];
 
-  // **HOOKS:**
+  /* HOOKS: */
   before((done) => {
     loader.load().then((result: loader.TFModule) => {
       tf = result;
@@ -48,7 +48,7 @@ export function run() {
     x = tf.variable(t);
   });
 
-  // **TESTS:**
+  /* TESTS: */
   it("  -- Variable.assign()", () => {
     /*
     Assign a new tf.Tensor to this variable.

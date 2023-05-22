@@ -8,12 +8,14 @@ import * as loader from "../../load-tf";
 /* MODULE TO LOAD DYNAMICALLY: */
 let tf: loader.TFModule;
 
-// **CONSTANTS:**
+/* CONSTANTS: */
 const SHAPE: [number, number] = [2, 2];
+
+/**** ---- MOCHA TEST FUNCTION: ---- *****/
 
 /* -- tf.TensorBuffer class methods-- */
 export function run() {
-  // **HOOKS:**
+  /* HOOKS: */
   before((done) => {
     loader.load().then((result: loader.TFModule) => {
       tf = result;
@@ -27,7 +29,7 @@ export function run() {
     buffer = tf.buffer(SHAPE);
   });
 
-  // **TESTS:**
+  /* TESTS: */
   it("  -- TensorBuffer.set()", () => {
     buffer.set(4, 0, 1);
     const t: tfTypes.Tensor<tfTypes.Rank.R2> = buffer.toTensor();

@@ -16,11 +16,11 @@ const DEFAULT_EXPECTED_RESULT = [
   [1, 2, 3],
 ];
 
-/* MOCHA TEST FUNCTION: */
+/**** ---- MOCHA TEST FUNCTION: ---- *****/
 
 /* -- tf.Variable class methods-- */
 export function run() {
-  // **HOOKS:**
+  /* HOOKS: */
   before((done) => {
     loader.load().then((result: loader.TFModule) => {
       tf = result;
@@ -29,7 +29,7 @@ export function run() {
     });
   });
 
-  // **TESTS:**
+  /* TESTS: */
   it("  -- array=>tensor : default example", () => {
     const t: tfTypes.Tensor = tf.broadcastTo(
       DEFAULT_ARR,

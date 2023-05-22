@@ -17,11 +17,11 @@ const CROPS = [
   [0, 0],
 ];
 
-/* MOCHA TEST FUNCTION: */
+/**** ---- MOCHA TEST FUNCTION: ---- *****/
 
 /* -- tf.Variable class methods-- */
 export function run() {
-  /* **HOOKS:** */
+  /* HOOKS: */
   before((done) => {
     loader.load().then((result: loader.TFModule) => {
       tf = result;
@@ -30,7 +30,7 @@ export function run() {
     });
   });
 
-  /* **TESTS:** */
+  /* TESTS: */
 
   // the innermost dimension is unchanged
   // the middle dimensions get modified by the blockshape

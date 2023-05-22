@@ -48,7 +48,7 @@ export function run() {
     const t: tfTypes.Tensor = tf.broadcastTo(x, DEFAULT_BROADCAST_SHAPE);
     expect(t).to.lookLike(DEFAULT_EXPECTED_RESULT);
   });
-  it("  -- tensor=>tensor : 2d example", () => {
+  it("  -- 2d example : shape [3, 3] => [2, 3, 3] ", () => {
     const arr = [
       [1, 2, 3],
       [4, 5, 6],
@@ -67,6 +67,17 @@ export function run() {
         [4, 5, 6],
         [7, 8, 9],
       ],
+    ];
+    const x: tfTypes.Tensor<tfTypes.Rank.R1> = tf.tensor(arr);
+    const t: tfTypes.Tensor = tf.broadcastTo(x, broadcastShape);
+    expect(t).to.lookLike(expectedResult);
+  });
+  it("  -- if array has shape if smaller dimension, it will copy that value : shape [2, 1] => [2, 2] ", () => {
+    const arr = [[5], [6]];
+    const broadcastShape = [2, 2];
+    const expectedResult = [
+      [5, 5],
+      [6, 6],
     ];
     const x: tfTypes.Tensor<tfTypes.Rank.R1> = tf.tensor(arr);
     const t: tfTypes.Tensor = tf.broadcastTo(x, broadcastShape);

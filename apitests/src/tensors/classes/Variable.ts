@@ -5,9 +5,10 @@ chai.use(tensorChaiPlugin);
 import type tfTypes from "@tensorflow/tfjs-core";
 import * as loader from "../../load-tf";
 
+/* MODULE TO LOAD DYNAMICALLY: */
 let tf: loader.TFModule;
 
-// Types:
+/* TYPES: */
 type TensorShape =
   | number[]
   | [number]
@@ -16,6 +17,8 @@ type TensorShape =
   | [number, number, number, number]
   | [number, number, number, number, number]
   | [number, number, number, number, number, number];
+
+/* MOCHA TEST FUNCTION: */
 
 /* -- tf.Variable class methods-- */
 export function run() {

@@ -5,7 +5,18 @@ chai.use(tensorChaiPlugin);
 import type tfTypes from "@tensorflow/tfjs-core";
 import * as loader from "../../load-tf";
 
+/* MODULE TO LOAD DYNAMICALLY: */
 let tf: loader.TFModule;
+
+/* CONSTANTS: */
+const DEFAULT_ARR = [1, 2, 3];
+const DEFAULT_BROADCAST_SHAPE = [2, 3];
+const DEFAULT_EXPECTED_RESULT = [
+  [1, 2, 3],
+  [1, 2, 3],
+];
+
+/* MOCHA TEST FUNCTION: */
 
 /* -- tf.Variable class methods-- */
 export function run() {
@@ -18,13 +29,6 @@ export function run() {
     });
   });
 
-  // **CONSTANTS:**
-  const DEFAULT_ARR = [1, 2, 3];
-  const DEFAULT_BROADCAST_SHAPE = [2, 3];
-  const DEFAULT_EXPECTED_RESULT = [
-    [1, 2, 3],
-    [1, 2, 3],
-  ];
   // **TESTS:**
   it("  -- array=>tensor : default example", () => {
     const t: tfTypes.Tensor = tf.broadcastTo(

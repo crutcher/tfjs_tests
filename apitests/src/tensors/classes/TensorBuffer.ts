@@ -5,13 +5,14 @@ chai.use(tensorChaiPlugin);
 import type tfTypes from "@tensorflow/tfjs-core";
 import * as loader from "../../load-tf";
 
+/* MODULE TO LOAD DYNAMICALLY: */
 let tf: loader.TFModule;
+
+// **CONSTANTS:**
+const SHAPE: [number, number] = [2, 2];
 
 /* -- tf.TensorBuffer class methods-- */
 export function run() {
-  // **CONSTANTS:**
-  const SHAPE: [number, number] = [2, 2];
-
   // **HOOKS:**
   before((done) => {
     loader.load().then((result: loader.TFModule) => {

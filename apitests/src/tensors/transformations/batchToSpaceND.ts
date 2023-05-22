@@ -7,7 +7,17 @@ import * as loader from "../../load-tf";
 // utils
 import { areEqual } from "../../utils/tensor-utils";
 
+/* MODULE TO LOAD DYNAMICALLY: */
 let tf: loader.TFModule;
+
+/* CONSTANTS: */
+const BLOCK_SHAPE = [2, 2];
+const CROPS = [
+  [0, 0],
+  [0, 0],
+];
+
+/* MOCHA TEST FUNCTION: */
 
 /* -- tf.Variable class methods-- */
 export function run() {
@@ -19,13 +29,6 @@ export function run() {
       done();
     });
   });
-
-  /* **CONSTANTS:** */
-  const BLOCK_SHAPE = [2, 2];
-  const CROPS = [
-    [0, 0],
-    [0, 0],
-  ];
 
   /* **TESTS:** */
 

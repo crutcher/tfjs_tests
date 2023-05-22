@@ -8,9 +8,10 @@ import * as loader from "../../load-tf";
 // utils
 import { areEqual } from "../../utils/tensor-utils";
 
+/* MODULE TO LOAD DYNAMICALLY: */
 let tf: loader.TFModule;
 
-// Types
+/* TYPES: */
 type TypedArray = Float32Array | Int32Array | Uint8Array | Uint16Array;
 
 /* -- tf.Tensor class methods-- */

@@ -7,6 +7,16 @@ import * as loader from "../../load-tf";
 
 let tf: loader.TFModule;
 
+// Types:
+type TensorShape =
+  | number[]
+  | [number]
+  | [number, number]
+  | [number, number, number]
+  | [number, number, number, number]
+  | [number, number, number, number, number]
+  | [number, number, number, number, number, number];
+
 /* -- tf.Variable class methods-- */
 export function run() {
   // **CONSTANTS:**
@@ -27,9 +37,11 @@ export function run() {
   });
   // - to initialize before each test:
   let t: tfTypes.Tensor;
+  let tShape: TensorShape;
   let x: tfTypes.Variable;
   beforeEach(() => {
     t = tf.tensor(INITIAL);
+    tShape = t.shape;
     x = tf.variable(t);
   });
 
@@ -49,6 +61,8 @@ export function run() {
     The new tensor does not have the same shape and dtype as the old tf.Tensor.
     */
     const t2: tfTypes.Tensor = tf.tensor(BAD_NEW_VALUES);
-    expect(() => x.assign(t2)).to.throw(Error);
+    expect(() => x.assign(t2)).to.throw(
+      `shape of the new value (${t2.shape}) and previous value (${tShape}) must match`
+    );
   });
 }

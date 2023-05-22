@@ -126,8 +126,6 @@ export function run() {
     const t: tfTypes.Tensor4D = tf.tensor4d([1, 2, 3, 4], [4, 1, 1, 1]);
     // inner dimension should have length of 2 to reflect shape of tensor
     const badCrops = [[0], [0]];
-    const expectedShape = [1, 0, 0, 1];
-    const expectedResult: number[] = [];
     expect(() => t.batchToSpaceND(BLOCK_SHAPE, badCrops)).to.throw(
       `Negative size values should be exactly -1 but got NaN for the slice() size at index 1.`
     );
@@ -141,16 +139,5 @@ export function run() {
     const x: tfTypes.Tensor = t.batchToSpaceND(newBlockShape, newCrops);
     expect(x).to.haveShape(expectedShape);
     expect(x).to.lookLike(expectedResult);
-  });
-  it("  -- with 2d tensor: blockshape = [2]; shape [2, 2] => [1, 4]", () => {
-    const t: tfTypes.Tensor2D = tf.tensor2d([1, 2, 3, 4], [2, 2]);
-    const newBlockShape = [1];
-    const newCrops = [[0, 0]];
-    const expectedShape = [1, 4];
-    const expectedResult = [[1, 3, 2, 4]]; //NB: this is different
-    const x: tfTypes.Tensor = t.batchToSpaceND(newBlockShape, newCrops);
-    x.print();
-    // expect(x).to.haveShape(expectedShape);
-    // expect(x).to.lookLike(expectedResult);
   });
 }

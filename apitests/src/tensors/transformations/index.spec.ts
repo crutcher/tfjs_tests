@@ -6,6 +6,7 @@ chai.use(spies);
 
 import * as batchToSpaceND from "./batchToSpaceND";
 import * as broadcastTo from "./broadcastTo";
+import * as broadcastArgs from "./broadcastArgs";
 
 /* ---- Tensors - transformations: This section describes some common Tensor transformations for reshaping and type-casting.---- */
 describe("**** TENSORS: Transformation Methods ****", () => {
@@ -25,4 +26,10 @@ describe("**** TENSORS: Transformation Methods ****", () => {
     If input.shape[i]==1 and shape[i]==N, then the input tensor is tiled N times along that axis (using tf.tile).
   */
   describe("tf.broadcastTo (x, shape) : transformation", broadcastTo.run);
+  /* ---- tf.broadcastTo (x, shape) ---- *
+    Return the shape of s0 op s1 with broadcast.
+    compute r0, the broadcasted shape as a tensor. s0, s1 and r0 are all integer vectors.
+    This function returns the shape of the result of an operation between two tensors of size s0 and s1 performed with broadcast.
+  */
+  describe("tf.broadcastArgs (s0, s1) : transformation", broadcastArgs.run);
 });

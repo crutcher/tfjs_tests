@@ -12,6 +12,7 @@ import * as depthToSpace from "./depthToSpace";
 import * as ensureShape from "./ensureShape";
 import * as expandDims from "./expandDims";
 import * as mirrorPad from "./mirrorPad";
+import * as pad from "./pad";
 
 /* ---- Tensors - transformations: This section describes some common Tensor transformations for reshaping and type-casting.---- */
 describe("**** TENSORS: Transformation Methods ****", () => {
@@ -73,4 +74,10 @@ describe("**** TENSORS: Transformation Methods ****", () => {
     This operation implements the REFLECT and SYMMETRIC modes of pad.
   */
   describe("tf.mirrorPad (x, paddings, mode) : transformation", mirrorPad.run);
+
+  /* ---- tf.pad (x, paddings, constantValue?)  ---- *
+    Pads a tf.Tensor with a given value and paddings.
+    This operation implements CONSTANT mode. For REFLECT and SYMMETRIC, refer to tf.mirrorPad().
+  */
+  describe("tf.pad (x, paddings, constantValue?) : transformation", pad.run);
 });

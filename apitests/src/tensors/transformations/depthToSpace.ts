@@ -10,7 +10,7 @@ let tf: loader.TFModule;
 
 /**** ---- MOCHA TEST FUNCTION: ---- *****/
 
-/* -- tf.batchToSpaceND(x, blockShape, crops)-- */
+/* -- tf.depthToSpace (x, blockSize, dataFormat?)-- */
 export function run() {
   /* HOOKS: */
   before((done) => {
@@ -22,11 +22,6 @@ export function run() {
   });
 
   /* TESTS: */
-
-  // the innermost dimension is unchanged
-  // the middle dimensions get modified by the blockshape
-  // the rannk of the tensor remains unchanged
-  // the size of the tensor remains unchanged
 
   it("  -- shape [1, 1, 1, 4], blockSize 2 => [1, 2, 2, 1]", () => {
     const x: tfTypes.Tensor4D = tf.tensor4d([1, 2, 3, 4], [1, 1, 1, 4]);

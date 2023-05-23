@@ -9,6 +9,7 @@ import * as broadcastTo from "./broadcastTo";
 import * as broadcastArgs from "./broadcastArgs";
 import * as cast from "./cast";
 import * as depthToSpace from "./depthToSpace";
+import * as ensureShape from "./ensureShape";
 
 /* ---- Tensors - transformations: This section describes some common Tensor transformations for reshaping and type-casting.---- */
 describe("**** TENSORS: Transformation Methods ****", () => {
@@ -52,4 +53,11 @@ describe("**** TENSORS: Transformation Methods ****", () => {
     "tf.depthToSpace (x, blockSize, dataFormat?) : transformation",
     depthToSpace.run
   );
+
+  /* ---- tf.broadcastTo (x, shape) ---- *
+    Checks the input tensor mathes the given shape.
+    Given an input tensor, returns a new tensor with the same values as the input tensor with shape shape.
+    The method supports the null value in tensor. It will still check the shapes, and null is a placeholder.
+  */
+  describe("tf.ensureShape (x, shape) : transformation", ensureShape.run);
 });

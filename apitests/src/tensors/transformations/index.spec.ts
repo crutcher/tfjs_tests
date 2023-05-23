@@ -7,6 +7,7 @@ chai.use(spies);
 import * as batchToSpaceND from "./batchToSpaceND";
 import * as broadcastTo from "./broadcastTo";
 import * as broadcastArgs from "./broadcastArgs";
+import * as cast from "./cast";
 
 /* ---- Tensors - transformations: This section describes some common Tensor transformations for reshaping and type-casting.---- */
 describe("**** TENSORS: Transformation Methods ****", () => {
@@ -32,4 +33,8 @@ describe("**** TENSORS: Transformation Methods ****", () => {
     This function returns the shape of the result of an operation between two tensors of size s0 and s1 performed with broadcast.
   */
   describe("tf.broadcastArgs (s0, s1) : transformation", broadcastArgs.run);
+  /* ---- tf.broadcastTo (x, shape) ---- *
+    Casts a tf.Tensor to a new dtype.
+  */
+  describe("tf.cast (x, dtype) : transformation", cast.run);
 });

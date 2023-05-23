@@ -25,8 +25,6 @@ export function run() {
     });
   });
 
-  /* CONSTANTS: */
-
   /* TESTS: */
 
   it("  -- default: pads with 0s", () => {

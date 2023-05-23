@@ -4,19 +4,11 @@ import { tensorChaiPlugin } from "../../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
 import type tfTypes from "@tensorflow/tfjs-core";
 import * as loader from "../../load-tf";
+// Types
+import { TFArray } from "../../utils/tensor-utils";
 
 /* MODULE TO LOAD DYNAMICALLY: */
 let tf: loader.TFModule;
-
-/* TYPES: */
-type TensorShape =
-  | number[]
-  | [number]
-  | [number, number]
-  | [number, number, number]
-  | [number, number, number, number]
-  | [number, number, number, number, number]
-  | [number, number, number, number, number, number];
 
 /**** ---- MOCHA TEST FUNCTION: ---- *****/
 
@@ -40,7 +32,7 @@ export function run() {
   });
   // - to initialize before each test:
   let t: tfTypes.Tensor;
-  let tShape: TensorShape;
+  let tShape: TFArray;
   let x: tfTypes.Variable;
   beforeEach(() => {
     t = tf.tensor(INITIAL);

@@ -11,6 +11,7 @@ import * as cast from "./cast";
 import * as depthToSpace from "./depthToSpace";
 import * as ensureShape from "./ensureShape";
 import * as expandDims from "./expandDims";
+import * as mirrorPad from "./mirrorPad";
 
 /* ---- Tensors - transformations: This section describes some common Tensor transformations for reshaping and type-casting.---- */
 describe("**** TENSORS: Transformation Methods ****", () => {
@@ -66,4 +67,10 @@ describe("**** TENSORS: Transformation Methods ****", () => {
     Returns a tf.Tensor that has expanded rank, by inserting a dimension into the tensor's shape.
   */
   describe("tf.expandDims (x, axis?) : transformation", expandDims.run);
+
+  /* ---- tf.mirrorPad (x, paddings, mode) ---- *
+    Pads a tf.Tensor using mirror padding.
+    This operation implements the REFLECT and SYMMETRIC modes of pad.
+  */
+  describe("tf.mirrorPad (x, paddings, mode) : transformation", mirrorPad.run);
 });

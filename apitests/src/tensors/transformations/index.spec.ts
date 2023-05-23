@@ -15,6 +15,7 @@ import * as mirrorPad from "./mirrorPad";
 import * as pad from "./pad";
 import * as reshape from "./reshape";
 import * as setdiff1dAsync from "./setdiff1dAsync";
+import * as spaceToBatchND from "./spaceToBatchND";
 
 /* ---- Tensors - transformations: This section describes some common Tensor transformations for reshaping and type-casting.---- */
 describe("**** TENSORS: Transformation Methods ****", () => {
@@ -97,4 +98,16 @@ describe("**** TENSORS: Transformation Methods ****", () => {
     This operation also returns a Tensor indices that represents the position of each out element in x. 
   */
   describe("tf.setdiff1dAsync (x, y) : transformation", setdiff1dAsync.run);
+
+  /* ---- tf.spaceToBatchND (x, blockShape, paddings)  ---- *
+    This operation divides "spatial" dimensions [1, ..., M] of the input into a grid of blocks of shape blockShape,
+    and interleaves these blocks with the "batch" dimension (0) such that in the output,
+    the spatial dimensions [1, ..., M] correspond to the position within the grid,
+    and the batch dimension combines both the position within a spatial block and the original batch position.
+    Prior to division into blocks, the spatial dimensions of the input are optionally zero padded according to paddings.
+   */
+  describe(
+    "tf.spaceToBatchND (x, blockShape, paddings) : transformation",
+    spaceToBatchND.run
+  );
 });

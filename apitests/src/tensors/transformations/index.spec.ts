@@ -10,6 +10,7 @@ import * as broadcastArgs from "./broadcastArgs";
 import * as cast from "./cast";
 import * as depthToSpace from "./depthToSpace";
 import * as ensureShape from "./ensureShape";
+import * as expandDims from "./expandDims";
 
 /* ---- Tensors - transformations: This section describes some common Tensor transformations for reshaping and type-casting.---- */
 describe("**** TENSORS: Transformation Methods ****", () => {
@@ -60,4 +61,9 @@ describe("**** TENSORS: Transformation Methods ****", () => {
     The method supports the null value in tensor. It will still check the shapes, and null is a placeholder.
   */
   describe("tf.ensureShape (x, shape) : transformation", ensureShape.run);
+
+  /* ---- tf.expandDims (x, axis?) ---- *
+    Returns a tf.Tensor that has expanded rank, by inserting a dimension into the tensor's shape.
+  */
+  describe("tf.expandDims (x, axis?) : transformation", expandDims.run);
 });

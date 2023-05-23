@@ -2,6 +2,8 @@ import * as chai from "chai";
 const expect = chai.expect;
 import { tensorChaiPlugin } from "../../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
+import { default as chaiAsPromised } from "chai-as-promised";
+chai.use(chaiAsPromised);
 import type tfTypes from "@tensorflow/tfjs-core";
 import * as loader from "../../load-tf";
 
@@ -46,5 +48,17 @@ export function run() {
       await tf.setdiff1dAsync(x, y);
     expect(out).to.lookLike(expectedOut);
     expect(indices).to.lookLike(expectedIndices);
+  });
+  it("  -- error if x or y are not 1d", async () => {
+    const x = [
+      [1, 2, 3],
+      [4, 5, 6],
+    ];
+    const y = [1, 3, 5];
+    // const expectedOut = [2, 4, 6];
+    // const expectedIndices = [1, 3, 5];
+    await expect(tf.setdiff1dAsync(x, y)).to.be.rejectedWith(
+      `x should be 1D tensor, but got x (2,3).`
+    );
   });
 }

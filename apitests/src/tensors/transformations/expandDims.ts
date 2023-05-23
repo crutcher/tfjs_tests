@@ -46,4 +46,12 @@ export function run() {
     expect(y).to.haveShape(expectedShape);
     expect(y).to.lookLike(expectedValue);
   });
+  it("  -- bad 2d example : with axis out of range", () => {
+    const axis = 3;
+    const initialShape: [number, number] = [2, 2];
+    const x: tfTypes.Tensor2D = tf.tensor2d([1, 2, 3, 4], initialShape);
+    expect(() => x.expandDims(axis)).to.throw(
+      `Axis must be <= rank of the tensor`
+    );
+  });
 }

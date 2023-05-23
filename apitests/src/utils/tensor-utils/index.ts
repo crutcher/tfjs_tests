@@ -92,18 +92,24 @@ function _intArrToBoolArr2d(arr: number[][]): boolean[][] {
   return arr.map((subarr) => _intArrToBoolArr(subarr));
 }
 
-function asBoolArray(t: tf.Tensor): BoolArray {
+function _intArrToBoolArr3d(arr: number[][][]): boolean[][][] {
+  return arr.map((subarr) => _intArrToBoolArr2d(subarr));
+}
+
+export function asBoolArray(t: tf.Tensor): BoolArray {
   if (t.dtype !== "bool") {
     throw new Error("tensor must be of type bool");
   }
-  if (t.rank > 2) {
-    throw new Error("conversion for ranks > 2 not implemented");
+  if (t.rank > 3) {
+    throw new Error("conversion for ranks > 3 not implemented");
   }
   const arr = t.arraySync();
   if (t.rank === 1) {
     return _intArrToBoolArr(arr as number[]);
   } else if (t.rank === 2) {
     return _intArrToBoolArr2d(arr as number[][]);
+  } else if (t.rank === 3) {
+    return _intArrToBoolArr3d(arr as number[][][]);
   } else {
     return [];
   }
@@ -116,4 +122,5 @@ export default {
   isAllZeros,
   isAllOnes,
   areEqual,
+  asBoolArray,
 };

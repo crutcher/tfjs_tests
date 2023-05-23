@@ -83,8 +83,8 @@ export function run() {
   it("  -- dType", async () => {
     //CONSTANTS
     const RESULT = [
-      [1, 0, 0],
-      [0, 1, 0],
+      [true, false, false],
+      [false, true, false],
     ];
     // TESTS
     const x: tfTypes.Tensor = tf.tensor(INDICES, undefined, "int32");

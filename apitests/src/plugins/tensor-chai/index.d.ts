@@ -1,4 +1,4 @@
-import { BasicType } from "../../utils";
+import { BasicType, TFArray, BoolArray } from "../../utils";
 export {};
 declare global {
   // type nArray = number[] | number[][] | number[][][] | number[][][][] | number[][][][][] | number[][][][][][]};
@@ -7,15 +7,7 @@ declare global {
       haveShape(shape: Array<number>): void;
       haveSize(size: number): void;
       haveDtype(dtype: keyof tf.DataTypeMap): void;
-      lookLike(
-        arr:
-          | number[]
-          | number[][]
-          | number[][][]
-          | number[][][][]
-          | number[][][][][]
-          | number[][][][][][]
-      ): void;
+      lookLike(arr: TFArray | BoolArray): void;
       filledWith(val: BasicType): void;
       allOnes: Assertion;
       allZeros: Assertion;

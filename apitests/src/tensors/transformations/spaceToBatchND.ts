@@ -113,7 +113,6 @@ export function run() {
       [1, 0],
       [0, 0],
     ];
-    const expectedResult = [[[[1]]], [[[2]]], [[[3]]], [[[4]]]];
     expect(() => x.spaceToBatchND(blockShape, badPaddings)).to.throw(
       `input spatial dimensions 2,2,1 with paddings 1,0,0,0 must be divisible by blockShapes 2,2`
     );

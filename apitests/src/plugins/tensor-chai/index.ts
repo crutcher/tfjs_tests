@@ -2,7 +2,6 @@ import tf from "@tensorflow/tfjs-core";
 // Utils
 import { TensorUtils } from "../../utils";
 import { BasicType } from "../../utils";
-import tensorUtils from "../../utils/tensor-utils";
 
 export const tensorChaiPlugin: Chai.ChaiPlugin = function (
   chai: Chai.ChaiStatic,
@@ -31,7 +30,11 @@ export const tensorChaiPlugin: Chai.ChaiPlugin = function (
 
   Assertion.addMethod("lookLike", function lookLike(arr) {
     const obj: tf.Tensor = utils.flag(this, "object");
-    new Assertion(obj.arraySync()).to.eql(arr);
+    if (obj.dtype === "bool") {
+      new Assertion(TensorUtils.asBoolArray(obj)).to.eql(arr);
+    } else {
+      new Assertion(obj.arraySync()).to.eql(arr);
+    }
   });
 
   Assertion.addMethod("filledWith", function filledWith(val: BasicType) {
@@ -56,7 +59,7 @@ export const tensorChaiPlugin: Chai.ChaiPlugin = function (
     "allValuesInRange",
     function allValuesInRange(start: number, end: number) {
       const obj: tf.Tensor = utils.flag(this, "object");
-      tensorUtils.forEachTensorValue(obj, (val) => {
+      TensorUtils.forEachTensorValue(obj, (val) => {
         new Assertion(val).to.be.within(start, end);
       });
     }

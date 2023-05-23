@@ -16,6 +16,7 @@ import * as pad from "./pad";
 import * as reshape from "./reshape";
 import * as setdiff1dAsync from "./setdiff1dAsync";
 import * as spaceToBatchND from "./spaceToBatchND";
+import * as squeeze from "./squeeze";
 
 /* ---- Tensors - transformations: This section describes some common Tensor transformations for reshaping and type-casting.---- */
 describe("**** TENSORS: Transformation Methods ****", () => {
@@ -110,4 +111,9 @@ describe("**** TENSORS: Transformation Methods ****", () => {
     "tf.spaceToBatchND (x, blockShape, paddings) : transformation",
     spaceToBatchND.run
   );
+
+  /* ---- tf.squeeze (x, axis?)  ---- *
+    Removes dimensions of size 1 from the shape of a tf.Tensor.
+   */
+  describe("tf.squeeze (x, axis?) : transformation", squeeze.run);
 });

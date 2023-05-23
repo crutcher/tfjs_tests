@@ -14,6 +14,7 @@ import * as expandDims from "./expandDims";
 import * as mirrorPad from "./mirrorPad";
 import * as pad from "./pad";
 import * as reshape from "./reshape";
+import * as setdiff1dAsync from "./setdiff1dAsync";
 
 /* ---- Tensors - transformations: This section describes some common Tensor transformations for reshaping and type-casting.---- */
 describe("**** TENSORS: Transformation Methods ****", () => {
@@ -88,4 +89,12 @@ describe("**** TENSORS: Transformation Methods ****", () => {
     If one component of shape is the special value -1, the size of that dimension is computed so that the total size remains constant. In particular, a shape of [-1] flattens into 1-D. At most one component of shape can be -1.
   */
   describe("tf.reshape (x, shape) : transformation", reshape.run);
+
+  /* ---- tf.setdiff1dAsync (x, y)  ---- *
+    Computes the difference between two lists of numbers.
+    Given a Tensor x and a Tensor y, this operation returns a Tensor out that represents all values that are in x but not in y.
+    The returned Tensor out is sorted in the same order that the numbers appear in x (duplicates are preserved).
+    This operation also returns a Tensor indices that represents the position of each out element in x. 
+  */
+  describe("tf.setdiff1dAsync (x, y) : transformation", setdiff1dAsync.run);
 });

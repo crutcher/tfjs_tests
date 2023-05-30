@@ -36,7 +36,7 @@ export function run() {
   /* TESTS: */
 
   it("  -- basic example: 2d tensor with 1d mask", async () => {
-    const mask = tf.tensor1d([1, 0, 1], "bool");
+    const mask: tfTypes.Tensor1D = tf.tensor1d([1, 0, 1], "bool");
     const expectedValues = [
       [1, 2],
       [5, 6],
@@ -46,7 +46,7 @@ export function run() {
     expect(result).to.lookLike(expectedValues);
   });
   it("  -- example with same result: mask contains non-binary values", async () => {
-    const mask = tf.tensor1d([5, 0, 8], "bool");
+    const mask: tfTypes.Tensor1D = tf.tensor1d([5, 0, 8], "bool");
     const expectedValues = [
       [1, 2],
       [5, 6],
@@ -56,14 +56,14 @@ export function run() {
     expect(result).to.lookLike(expectedValues);
   });
   it("  -- error: mask is of type float (but contains only 1 and 0)", async () => {
-    const mask = tf.tensor1d([1, 0, 1], "float32");
+    const mask: tfTypes.Tensor1D = tf.tensor1d([1, 0, 1], "float32");
     // assertions:
     await expect(tf.booleanMaskAsync(x, mask)).to.be.rejectedWith(
       `Argument 'mask' passed to 'boolMask' must be bool tensor, but got float32 tensor`
     );
   });
   it("  -- error: mask dimensions don't fit tensor", async () => {
-    const mask = tf.tensor1d([1, 0, 1, 1], "bool");
+    const mask: tfTypes.Tensor1D = tf.tensor1d([1, 0, 1, 1], "bool");
     // assertions:
     await expect(tf.booleanMaskAsync(x, mask)).to.be.rejectedWith(
       `mask's shape must match the first K dimensions of tensor's shape, Shapes 3 and 4 must match`
@@ -86,7 +86,7 @@ export function run() {
         [11, 12],
       ],
     ]);
-    const mask = tf.tensor(
+    const mask: tfTypes.Tensor2D = tf.tensor(
       [
         [1, 0],
         [0, 1],

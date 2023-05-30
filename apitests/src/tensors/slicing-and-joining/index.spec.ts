@@ -5,6 +5,7 @@ import spies from "chai-spies";
 chai.use(spies);
 
 import * as booleanMaskAsync from "./booleanMaskAsync";
+import * as concat from "./concat";
 
 /* ---- Tensors - slicing and joining:----
   TensorFlow.js provides several operations to slice or extract parts of a tensor,
@@ -19,4 +20,12 @@ describe("**** TENSORS: Slicing and Joining ****", () => {
     "tf.booleanMaskAsync (tensor, mask, axis?) : slicing and joining",
     booleanMaskAsync.run
   );
+
+  /* ---- tf.concat (tensors, axis?)---- *
+    Concatenates a list of tf.Tensors along a given axis.
+    The tensors ranks and types must match, and their sizes must match in all dimensions except axis.
+    Also available are stricter rank-specific methods that assert that tensors are of the given rank:
+    tf.concat1d, tf.concat2d, tf.concat3d, tf.concat4d
+  */
+  describe("tf.concat (tensors, axis?) : slicing and joining", concat.run);
 });

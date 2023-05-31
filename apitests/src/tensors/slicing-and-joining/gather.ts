@@ -156,7 +156,6 @@ export function run() {
   });
 
   it("  -- 2d example: with batch dims", async () => {
-    const batchDims = 1;
     const axis = 1;
     const indicesAsArr = DEFAULT_INDICES_FOR_AXIS_EXAMPLES;
     const x: tfTypes.Tensor2D = tf.tensor2d([

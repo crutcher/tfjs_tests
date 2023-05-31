@@ -7,6 +7,7 @@ chai.use(spies);
 import * as booleanMaskAsync from "./booleanMaskAsync";
 import * as concat from "./concat";
 import * as gather from "./gather";
+import * as reverse from "./reverse";
 
 /* ---- Tensors - slicing and joining:----
   TensorFlow.js provides several operations to slice or extract parts of a tensor,
@@ -37,4 +38,11 @@ describe("**** TENSORS: Slicing and Joining ****", () => {
     "tf.gather (x, indices, axis?, batchDims?) : slicing and joining",
     gather.run
   );
+
+  /* ---- tf.reverse (x, axis?)---- *
+    Reverses a tf.Tensor along a specified axis.
+    Also available are stricter rank-specific methods that assert that x is of the given rank:
+    tf.reverse1d, tf.reverse2d, tf.reverse3d, tf.reverse4d
+  */
+  describe("tf.reverse (x, axis?) : slicing and joining", reverse.run);
 });

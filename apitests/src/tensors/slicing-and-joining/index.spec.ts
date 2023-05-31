@@ -11,6 +11,7 @@ import * as reverse from "./reverse";
 import * as slice from "./slice";
 import * as split from "./split";
 import * as stack from "./stack";
+import * as tile from "./tile";
 
 /* ---- Tensors - slicing and joining:----
   TensorFlow.js provides several operations to slice or extract parts of a tensor,
@@ -72,4 +73,13 @@ describe("**** TENSORS: Slicing and Joining ****", () => {
     Stacks a list of rank-R tf.Tensors into one rank-(R+1) tf.Tensor.
   */
   describe("tf.stack (tensors, axis?) : slicing and joining", stack.run);
+
+  /* ---- tf.tile (x, reps)---- *
+    Construct a tensor by repeating it the number of times given by reps.
+    This operation creates a new tensor by replicating input reps times.
+    The output tensor's ith dimension has input.shape[i] * reps[i] elements,
+    and the values of input are replicated reps[i] times along the ith dimension.
+    For example, tiling [a, b, c, d] by [2] produces [a, b, c, d, a, b, c, d].
+  */
+  describe("tf.tile (x, reps) : slicing and joining", tile.run);
 });

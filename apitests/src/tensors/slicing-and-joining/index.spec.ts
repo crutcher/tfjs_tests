@@ -6,6 +6,7 @@ chai.use(spies);
 
 import * as booleanMaskAsync from "./booleanMaskAsync";
 import * as concat from "./concat";
+import * as gather from "./gather";
 
 /* ---- Tensors - slicing and joining:----
   TensorFlow.js provides several operations to slice or extract parts of a tensor,
@@ -28,4 +29,12 @@ describe("**** TENSORS: Slicing and Joining ****", () => {
     tf.concat1d, tf.concat2d, tf.concat3d, tf.concat4d
   */
   describe("tf.concat (tensors, axis?) : slicing and joining", concat.run);
+
+  /* ---- tf.gather (x, indices, axis?, batchDims?)---- *
+    Gather slices from tensor x's axis axis according to indices.
+  */
+  describe(
+    "tf.gather (x, indices, axis?, batchDims?) : slicing and joining",
+    gather.run
+  );
 });

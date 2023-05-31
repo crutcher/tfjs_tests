@@ -10,6 +10,7 @@ import * as gather from "./gather";
 import * as reverse from "./reverse";
 import * as slice from "./slice";
 import * as split from "./split";
+import * as stack from "./stack";
 
 /* ---- Tensors - slicing and joining:----
   TensorFlow.js provides several operations to slice or extract parts of a tensor,
@@ -66,4 +67,9 @@ describe("**** TENSORS: Slicing and Joining ****", () => {
     "tf.split (x, numOrSizeSplits, axis?) : slicing and joining",
     split.run
   );
+
+  /* ---- tf.stack (tensors, axis?)---- *
+    Stacks a list of rank-R tf.Tensors into one rank-(R+1) tf.Tensor.
+  */
+  describe("tf.stack (tensors, axis?) : slicing and joining", stack.run);
 });

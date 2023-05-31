@@ -8,6 +8,7 @@ import * as booleanMaskAsync from "./booleanMaskAsync";
 import * as concat from "./concat";
 import * as gather from "./gather";
 import * as reverse from "./reverse";
+import * as slice from "./slice";
 
 /* ---- Tensors - slicing and joining:----
   TensorFlow.js provides several operations to slice or extract parts of a tensor,
@@ -45,4 +46,11 @@ describe("**** TENSORS: Slicing and Joining ****", () => {
     tf.reverse1d, tf.reverse2d, tf.reverse3d, tf.reverse4d
   */
   describe("tf.reverse (x, axis?) : slicing and joining", reverse.run);
+
+  /* ---- tf.slice (x, begin, size?)---- *
+    Extracts a slice from a tf.Tensor starting at coordinates begin and is of size size.
+    Also available are stricter rank-specific methods with the same signature as this method that assert that x is of the given rank:
+    tf.slice1d, tf.slice2d, tf.slice3d, tf.slice4d
+  */
+  describe("tf.slice (x, begin, size?) : slicing and joining", slice.run);
 });

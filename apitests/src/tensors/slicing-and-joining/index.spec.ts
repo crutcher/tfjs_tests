@@ -12,6 +12,7 @@ import * as slice from "./slice";
 import * as split from "./split";
 import * as stack from "./stack";
 import * as tile from "./tile";
+import * as unstack from "./unstack";
 
 /* ---- Tensors - slicing and joining:----
   TensorFlow.js provides several operations to slice or extract parts of a tensor,
@@ -82,4 +83,9 @@ describe("**** TENSORS: Slicing and Joining ****", () => {
     For example, tiling [a, b, c, d] by [2] produces [a, b, c, d, a, b, c, d].
   */
   describe("tf.tile (x, reps) : slicing and joining", tile.run);
+
+  /* ---- tf.unstack (x, axis?)---- *
+    Unstacks a tf.Tensor of rank-R into a list of rank-(R-1) tf.Tensors.
+  */
+  describe("tf.unstack (x, axis?)", unstack.run);
 });

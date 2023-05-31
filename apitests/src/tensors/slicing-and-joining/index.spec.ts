@@ -9,6 +9,7 @@ import * as concat from "./concat";
 import * as gather from "./gather";
 import * as reverse from "./reverse";
 import * as slice from "./slice";
+import * as split from "./split";
 
 /* ---- Tensors - slicing and joining:----
   TensorFlow.js provides several operations to slice or extract parts of a tensor,
@@ -53,4 +54,16 @@ describe("**** TENSORS: Slicing and Joining ****", () => {
     tf.slice1d, tf.slice2d, tf.slice3d, tf.slice4d
   */
   describe("tf.slice (x, begin, size?) : slicing and joining", slice.run);
+
+  /* ---- tf.split (x, numOrSizeSplits, axis?)---- *
+    Splits a tf.Tensor into sub tensors.
+    If numOrSizeSplits is a number, splits x along dimension axis into numOrSizeSplits smaller tensors.
+    Requires that numOrSizeSplits evenly divides x.shape[axis].
+    If numOrSizeSplits is a number array, splits x into numOrSizeSplits.length pieces.
+    The shape of the i-th piece has the same size as x except along dimension axis where the size is numOrSizeSplits[i].
+  */
+  describe(
+    "tf.split (x, numOrSizeSplits, axis?) : slicing and joining",
+    split.run
+  );
 });

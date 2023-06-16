@@ -61,4 +61,8 @@ describe("**** TENSORS: Random ****", () => {
     "tf.randomUniform (shape, minval?, maxval?, dtype?, seed?) : random",
     randomUniform.run
   );
+
+  /* ---- tf.randomUniformInt (shape, minval, maxval, seed?) ---- *
+    ! Method not included in tfjs !
+  */
 });

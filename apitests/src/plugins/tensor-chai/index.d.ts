@@ -12,6 +12,7 @@ declare global {
       allOnes: Assertion;
       allZeros: Assertion;
       allValuesInRange(start: number, end: number): void;
+      onlyValuesInSet(arr: number[]): void;
     }
   }
 }

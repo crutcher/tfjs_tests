@@ -64,4 +64,14 @@ export const tensorChaiPlugin: Chai.ChaiPlugin = function (
       });
     }
   );
+
+  Assertion.addMethod(
+    "onlyValuesInSet",
+    function onlyValuesInSet(arr: number[]) {
+      const obj: tf.Tensor = utils.flag(this, "object");
+      TensorUtils.forEachTensorValue(obj, (val) => {
+        new Assertion(arr).to.include(val);
+      });
+    }
+  );
 };

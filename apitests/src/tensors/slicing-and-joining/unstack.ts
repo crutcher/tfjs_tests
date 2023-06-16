@@ -56,7 +56,6 @@ export function run() {
     const results: tfTypes.Tensor<tfTypes.Rank>[] = tf.unstack(a, axis);
     expect(results).to.have.lengthOf(expectedLength);
     results.forEach((result) => {
-      result.print();
       expect(result).to.haveShape(expectedShape);
     });
   });

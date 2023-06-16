@@ -31,7 +31,7 @@ export function forEachTensorValue<T>(
     if (elAsArray.length !== 1) return;
     const item = elAsArray[0];
     // callback on item
-    return callback(item);
+    callback(item);
   }
 }
 

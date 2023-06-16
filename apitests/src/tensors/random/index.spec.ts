@@ -6,6 +6,7 @@ chai.use(spies);
 
 import * as multinomial from "./multinomial";
 import * as rand from "./rand";
+import * as randomGamma from "./randomGamma";
 
 /* ---- Tensors - random:---- */
 
@@ -22,4 +23,12 @@ describe("**** TENSORS: Random ****", () => {
     Creates a tf.Tensor with values sampled from a random number generator function defined by the user.
   */
   describe("tf.rand (shape, randFunction, dtype?)", rand.run);
+
+  /* ---- tf.randomGamma (shape, alpha, beta?, dtype?, seed?) ---- *
+    Creates a tf.Tensor with values sampled from a gamma distribution.
+  */
+  describe(
+    "tf.randomGamma (shape, alpha, beta?, dtype?, seed?)",
+    randomGamma.run
+  );
 });

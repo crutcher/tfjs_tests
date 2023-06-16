@@ -31,6 +31,7 @@ export function run() {
     expect(result).to.haveShape(shape);
     expect(result).to.have.allValuesInRange(0, 1);
   });
+
   it("  -- basic example: with dtype", () => {
     const shape = [2, 3];
     const randFunction = () => Math.random();

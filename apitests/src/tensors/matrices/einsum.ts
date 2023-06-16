@@ -4,7 +4,6 @@ import { tensorChaiPlugin } from "../../plugins/tensor-chai";
 chai.use(tensorChaiPlugin);
 import type tfTypes from "@tensorflow/tfjs-core";
 import * as loader from "../../load-tf";
-import exp from "constants";
 
 /* MODULE TO LOAD DYNAMICALLY: */
 let tf: loader.TFModule;

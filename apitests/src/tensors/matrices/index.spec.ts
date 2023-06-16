@@ -9,8 +9,10 @@ import * as einsum from "./einsum";
 /* ---- Tensors - matrices:---- */
 
 describe("**** TENSORS: Matrices ****", () => {
-  /* ---- tf.booleanMaskAsync (tensor, mask, axis?)---- *
-    Apply boolean mask to tensor.
+  /* ---- tf.einsum (equation, ...tensors)---- *
+    Tensor contraction over specified indices and outer product.
+    einsum allows defining Tensors by defining their element-wise computation.
+    This computation is based on Einstein summation.
   */
   describe("tf.einsum (equation, ...tensors) : matrices", einsum.run);
 });

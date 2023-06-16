@@ -1,0 +1,19 @@
+import * as chai from "chai";
+import { tensorChaiPlugin } from "../../plugins/tensor-chai";
+chai.use(tensorChaiPlugin);
+import spies from "chai-spies";
+chai.use(spies);
+
+import * as multinomial from "./multinomial";
+
+/* ---- Tensors - random:---- */
+
+describe("**** TENSORS: Random ****", () => {
+  /* ---- tf.multinomial (logits, numSamples, seed?, normalized?) ---- *
+    Creates a tf.Tensor with values drawn from a multinomial distribution.
+  */
+  describe(
+    "tf.multinomial (logits, numSamples, seed?, normalized?)",
+    multinomial.run
+  );
+});

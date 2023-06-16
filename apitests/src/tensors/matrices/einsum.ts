@@ -23,7 +23,7 @@ export function run() {
 
   /* TESTS: */
 
-  it("  -- matrix multiplication", async () => {
+  it("  -- matrix multiplication", () => {
     const x: tfTypes.Tensor2D = tf.tensor2d([
       [1, 2, 3],
       [4, 5, 6],
@@ -41,7 +41,7 @@ export function run() {
     const result: tfTypes.Tensor = tf.einsum("ij,jk->ik", x, y);
     expect(result).to.lookLike(expected);
   });
-  it("  -- !! matrix multiplication: bad matrix shapes", async () => {
+  it("  -- !! matrix multiplication: bad matrix shapes", () => {
     const x: tfTypes.Tensor2D = tf.tensor2d([
       [1, 2, 3],
       [4, 5, 6],
@@ -57,7 +57,7 @@ export function run() {
       `Expected dimension 3 at axis 0 of input shaped [4,2], but got dimension 4`
     );
   });
-  it("  -- dot product (scalar result)", async () => {
+  it("  -- dot product (scalar result)", () => {
     const x: tfTypes.Tensor1D = tf.tensor1d([1, 2, 3]);
     const y: tfTypes.Tensor1D = tf.tensor1d([0, 1, 2]);
     const expected = 8;
